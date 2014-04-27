@@ -4,8 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
     <title>blog.mo-fu.org - FuelPHPで簡単なWebアプリケーションを作ってみる</title>
-    <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" />
-    <link href="/stylesheets/all.css" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/all.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/syntax.css" rel="stylesheet" type="text/css" />
     <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
   </head>
   <body>
@@ -44,13 +43,12 @@
 <p><a href="http://www.mamp.info/en/index.html">MAMPダウンロード</a></p>
 
 <p>MAMPのphpを使用するための設定</p>
-
-<pre><code># ~/.bash_profile または ~/.zshrc をエディタで開いて入力してください。
-export PATH=&quot;/Applications/MAMP/bin/php/php5.3.14/bin:$PATH&quot;
+<pre class="highlight plaintext"># ~/.bash_profile または ~/.zshrc をエディタで開いて入力してください。
+export PATH="/Applications/MAMP/bin/php/php5.3.14/bin:$PATH"
 
 # 設定を反映
 /Users/kurotaky/lang/php% source ~/.zshrc
-</code></pre>
+</pre>
 
 <h3 id="fuelphpをインストール">FuelPHPをインストール</h3>
 
@@ -59,15 +57,14 @@ export PATH=&quot;/Applications/MAMP/bin/php/php5.3.14/bin:$PATH&quot;
 <ul>
 <li><a href="http://fuelphp.com/">FuelPHP</a></li>
 <li><p><a href="http://press.nekoget.com/fuelphp_doc/">FuelPHP日本語ドキュメント</a></p>
-
-<pre><code># oil インストール
+<pre class="highlight plaintext"># oil インストール
  curl get.fuelphp.com/oil | sh
 
 # oil create [アプリケーション名] でアプリケーションを作成
  /Users/kurotaky/lang/php% oil create blog
 
  # ↓ コマンドを実行すると以下の様なメッセージが出るはず、少し時間がかかります
- Cloning into &#39;./blog&#39;...
+ Cloning into './blog'...
  remote: Counting objects: 14502, done.
  remote: Compressing objects: 100% (5019/5019), done.
  remote: Total 14502 (delta 9862), reused 13643 (delta 9246)
@@ -76,7 +73,7 @@ export PATH=&quot;/Applications/MAMP/bin/php/php5.3.14/bin:$PATH&quot;
 # シンボリックリンク作成
  cd /Applications/MAMP/htdoc
  ln -s ~/lang/php/blog/public blog
-</code></pre></li>
+</pre></li>
 </ul>
 
 <p>これで準備ができました。(MAMPは起動しておいてください！)
@@ -85,25 +82,22 @@ export PATH=&quot;/Applications/MAMP/bin/php/php5.3.14/bin:$PATH&quot;
 <p><a href="http://localhost:8888/blog">http://localhost:8888/blog</a></p>
 
 <h3 id="scaffoldを使って簡単なブログっぽいアプリを作ってみる">scaffoldを使って簡単なブログっぽいアプリを作ってみる</h3>
-
-<pre><code>oil generate scaffold post title:string summary:varchar[250] body:text
-</code></pre>
+<pre class="highlight plaintext">oil generate scaffold post title:string summary:varchar[250] body:text
+</pre>
 
 <p>これだけでok</p>
 
 <h4 id="oil-を実行しようとして以下のエラーが出た場合">oil を実行しようとして以下のエラーが出た場合</h4>
-
-<pre><code>/Applications/MAMP/htdocs/blog% oil
+<pre class="highlight plaintext">/Applications/MAMP/htdocs/blog% oil
 This is not a valid Fuel installation so Oil is a bit lost.
 http://fuelphp.com/docs/installation/instructions.html
 
 # コマンドはパスが通っているところでここで叩かないとダメ
 著者の環境では User/kurotaky/lang/php/blog に移動して実行すればOK
-</code></pre>
+</pre>
 
 <h4 id="あるいは、こんなエラーが出た場合">あるいは、こんなエラーが出た場合</h4>
-
-<pre><code>/Users/kurotaky/lang/php/blog% oil generate scaffold post title:string summary:varchar[250] body:text
+<pre class="highlight plaintext">/Users/kurotaky/lang/php/blog% oil generate scaffold post title:string summary:varchar[250] body:text
 zsh: no matches found: summary:varchar[250]
 
 # zsh の場合エスケープが必要らしい
@@ -124,7 +118,7 @@ Creating view: /Users/kurotaky/lang/php/blog/fuel/app/views/template.php
 001_create_posts
 
 # phpMyAdminであらかじめテーブルを作っていないと例外が出るかも。
-</code></pre>
+</pre>
 
 <p><a href="http://localhost:8888/MAMP/?language=Japanese">http://localhost:8888/MAMP/?language=Japanese</a> の phpMyAdminからデータベースを選択して、
 データベースを作成してください。(ここではfuel_devとしています)</p>

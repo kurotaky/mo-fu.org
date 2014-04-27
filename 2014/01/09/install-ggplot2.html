@@ -4,8 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
     <title>blog.mo-fu.org - ggplot2をインストールして使うまで</title>
-    <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" />
-    <link href="/stylesheets/all.css" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/all.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/syntax.css" rel="stylesheet" type="text/css" />
     <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
   </head>
   <body>
@@ -14,15 +13,13 @@
       <h2 id="インストール">インストール</h2>
 
 <p>Rコンソールを開いて以下のコマンドを入力する。</p>
+<pre class="highlight plaintext">install.packages("ggplot2")
 
-<pre><code>install.packages(&quot;ggplot2&quot;)
-
-</code></pre>
+</pre>
 
 <h2 id="グラフを出力する">グラフを出力する</h2>
-
-<pre><code>&gt; library(ggplot2)
-&gt; data &lt;- read.csv(&quot;/Users/yuta/201401-lines-of-code.csv&quot;)
+<pre class="highlight plaintext">&gt; library(ggplot2)
+&gt; data &lt;- read.csv("/Users/yuta/201401-lines-of-code.csv")
 &gt; data
   day lines
 1   1    53
@@ -35,7 +32,7 @@
 8   8   206
 &gt; ggplot(data, aes(x=day, y=lines)) + geom_line() + geom_point()
 
-</code></pre>
+</pre>
 
     </div>
     
