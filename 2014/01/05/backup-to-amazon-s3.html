@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
     <title>blog.mo-fu.org - SqaleからAmazonS3にDBをバックアップする</title>
+    <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/all.css" rel="stylesheet" type="text/css" />
     <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
   </head>
   <body>
@@ -12,7 +14,7 @@
       <p>Sqale で運用しているアプリケーションのDBのdumpファイルを
 S3のバケットに保存する方法です。</p>
 
-<h2 id="section">はじめに</h2>
+<h2 id="はじめに">はじめに</h2>
 
 <p>AWSのAccess Keyを管理画面で閲覧してメモしておいてください。
 Security Credentials を選択、Access Keys をクリックするとAccess Key IDが表示されます。</p>
@@ -20,62 +22,59 @@ Security Credentials を選択、Access Keys をクリックするとAccess Key 
 <p>こちらにアクセスキーに関する説明があります。</p>
 
 <ul>
-  <li>http://blogs.aws.amazon.com/security/post/Tx1R9KDN9ISZ0HF/Where-s-my-secret-access-key</li>
+<li><a href="http://blogs.aws.amazon.com/security/post/Tx1R9KDN9ISZ0HF/Where-s-my-secret-access-key">http://blogs.aws.amazon.com/security/post/Tx1R9KDN9ISZ0HF/Where-s-my-secret-access-key</a></li>
 </ul>
 
-<h2 id="s3">S3にバケット作成する</h2>
+<h2 id="s3にバケット作成する">S3にバケット作成する</h2>
 
 <p>gateway.sqale.jp にsshログイン。</p>
 
-<p><code>
-ssh gateway.sqale.jp -p 2222
-</code></p>
+<pre><code>ssh gateway.sqale.jp -p 2222
+</code></pre>
 
 <p>以下のコマンドを入力したあと、AWSのアクセスキーとシークレットキー入力します。</p>
 
-<p>```
-s3cmd –configure</p>
+<pre><code>s3cmd --configure
 
-<p>```</p>
+</code></pre>
 
 <p><code>s3cmd mb</code> コマンドでS3にバケットを作成します。</p>
 
-<p><code>
-s3cmd mb s3://sampleapp-backup
-</code></p>
+<pre><code>s3cmd mb s3://sampleapp-backup
+</code></pre>
 
 <p>以下のようにメッセージが出力されれば、バケットの作成が完了です。</p>
 
-<p><code>
-Bucket 's3://sampleapp-backup/' created
-</code></p>
+<pre><code>Bucket &#39;s3://sampleapp-backup/&#39; created
+</code></pre>
 
-<h2 id="s3dump">S3にdumpファイルをアップロードする</h2>
+<h2 id="s3にdumpファイルをアップロードする">S3にdumpファイルをアップロードする</h2>
+
 <p><code>s3cmd put</code> コマンドでdumpファイルをアップロードします。</p>
 
-<p><code>
-s3cmd put 20140105-sampleapp-mysql.dump s3://sampleapp-backup/20140105-sampleapp-mysql.dump
-</code></p>
+<pre><code>s3cmd put 20140105-sampleapp-mysql.dump s3://sampleapp-backup/20140105-sampleapp-mysql.dump
+</code></pre>
 
-<h2 id="dumps3">定期的にdumpファイルをS3に保存する</h2>
+<h2 id="定期的にdumpファイルをs3に保存する">定期的にdumpファイルをS3に保存する</h2>
+
 <p>以下のようにrake task を作成してcronで設定すれば、
 定期的にdumpファイルを保存することができます。</p>
 
-<p>```ruby
-namespace :db do
-  desc "mysql dump: db backup to Amazon S3"</p>
+<pre><code class="ruby">namespace :db do
+  desc &quot;mysql dump: db backup to Amazon S3&quot;
 
-<p>task :backup =&gt; :environment do
-    system "mysqldump -u #{ENV['SQALE_USERNAME']} -h #{ENV['SQALE_HOST']} -p #{ENV['SQALE_DATABASE']} –password=#{ENV['SQALE_PASSWORD']} &gt; ../tmp/#{Time.now.strftime('%Y%m%d')}-sampleapp-mysql.dump"
-    system "s3cmd put ../tmp/#{Time.now.strftime('%Y%m%d')}-sampleapp-mysql.dump s3://sampleapp-backup/#{Time.now.year}/#{Time.now.month}/"
+  task :backup =&gt; :environment do
+    system &quot;mysqldump -u #{ENV[&#39;SQALE_USERNAME&#39;]} -h #{ENV[&#39;SQALE_HOST&#39;]} -p #{ENV[&#39;SQALE_DATABASE&#39;]} --password=#{ENV[&#39;SQALE_PASSWORD&#39;]} &gt; ../tmp/#{Time.now.strftime(&#39;%Y%m%d&#39;)}-sampleapp-mysql.dump&quot;
+    system &quot;s3cmd put ../tmp/#{Time.now.strftime(&#39;%Y%m%d&#39;)}-sampleapp-mysql.dump s3://sampleapp-backup/#{Time.now.year}/#{Time.now.month}/&quot;
   end
 end
-```</p>
+</code></pre>
 
-<h2 id="url">参考URL</h2>
+<h2 id="参考url">参考URL</h2>
+
 <ul>
-  <li>http://blogs.aws.amazon.com/security/post/Tx1R9KDN9ISZ0HF/Where-s-my-secret-access-key</li>
-  <li>https://sqale.jp/support/manual/db-backup-restore</li>
+<li><a href="http://blogs.aws.amazon.com/security/post/Tx1R9KDN9ISZ0HF/Where-s-my-secret-access-key">http://blogs.aws.amazon.com/security/post/Tx1R9KDN9ISZ0HF/Where-s-my-secret-access-key</a></li>
+<li><a href="https://sqale.jp/support/manual/db-backup-restore">https://sqale.jp/support/manual/db-backup-restore</a></li>
 </ul>
 
     </div>

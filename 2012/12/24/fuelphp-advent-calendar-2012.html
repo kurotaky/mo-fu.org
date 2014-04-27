@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
     <title>blog.mo-fu.org - FuelPHPで簡単なWebアプリケーションを作ってみる</title>
+    <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/all.css" rel="stylesheet" type="text/css" />
     <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
   </head>
   <body>
@@ -19,21 +21,24 @@
 
 <p>まずは環境設定からです。</p>
 
-<h2 id="section">必要な環境</h2>
+<h2 id="必要な環境">必要な環境</h2>
+
 <ul>
-  <li>MacOSX Lion(10.7.4)</li>
-  <li>エディタ(SublimeText2など)</li>
-  <li>MAMP(Apache, PHP, MySQL)</li>
-  <li>FuelPHP 1.4</li>
+<li>MacOSX Lion(10.7.4)</li>
+<li>エディタ(SublimeText2など)</li>
+<li>MAMP(Apache, PHP, MySQL)</li>
+<li>FuelPHP 1.4</li>
 </ul>
 
-<h3 id="sublime-text2">Sublime Text2インストール</h3>
+<h3 id="sublime-text2インストール">Sublime Text2インストール</h3>
+
 <p>普段使ってるエディタがある人はそれを使ってください。
 今回はSublime Text2を使ってファイルを編集しました。</p>
 
 <p><a href="http://www.sublimetext.com/">Sublime Text2</a></p>
 
-<h3 id="mamp">MAMPインストール</h3>
+<h3 id="mampインストール">MAMPインストール</h3>
+
 <p>ここからインストールしてください！</p>
 
 <p><a href="http://www.mamp.info/en/index.html">MAMPダウンロード</a></p>
@@ -41,53 +46,53 @@
 <p>MAMPのphpを使用するための設定</p>
 
 <pre><code># ~/.bash_profile または ~/.zshrc をエディタで開いて入力してください。
-export PATH="/Applications/MAMP/bin/php/php5.3.14/bin:$PATH"
+export PATH=&quot;/Applications/MAMP/bin/php/php5.3.14/bin:$PATH&quot;
 
 # 設定を反映
 /Users/kurotaky/lang/php% source ~/.zshrc
 </code></pre>
 
-<h3 id="fuelphp">FuelPHPをインストール</h3>
+<h3 id="fuelphpをインストール">FuelPHPをインストール</h3>
+
 <p>こちらを参考にしてインストールしました。</p>
 
 <ul>
-  <li><a href="http://fuelphp.com/">FuelPHP</a></li>
-  <li>
-    <p><a href="http://press.nekoget.com/fuelphp_doc/">FuelPHP日本語ドキュメント</a></p>
+<li><a href="http://fuelphp.com/">FuelPHP</a></li>
+<li><p><a href="http://press.nekoget.com/fuelphp_doc/">FuelPHP日本語ドキュメント</a></p>
 
-    <pre><code>  # oil インストール
-   curl get.fuelphp.com/oil | sh
+<pre><code># oil インストール
+ curl get.fuelphp.com/oil | sh
 
-  # oil create [アプリケーション名] でアプリケーションを作成
-   /Users/kurotaky/lang/php% oil create blog
+# oil create [アプリケーション名] でアプリケーションを作成
+ /Users/kurotaky/lang/php% oil create blog
 
-   # ↓ コマンドを実行すると以下の様なメッセージが出るはず、少し時間がかかります
-   Cloning into './blog'...
-   remote: Counting objects: 14502, done.
-   remote: Compressing objects: 100% (5019/5019), done.
-   remote: Total 14502 (delta 9862), reused 13643 (delta 9246)
-   Receiving objects: 100% (14502/14502), 2.21 MiB | 183 KiB/s, done.
+ # ↓ コマンドを実行すると以下の様なメッセージが出るはず、少し時間がかかります
+ Cloning into &#39;./blog&#39;...
+ remote: Counting objects: 14502, done.
+ remote: Compressing objects: 100% (5019/5019), done.
+ remote: Total 14502 (delta 9862), reused 13643 (delta 9246)
+ Receiving objects: 100% (14502/14502), 2.21 MiB | 183 KiB/s, done.
 
-  # シンボリックリンク作成
-   cd /Applications/MAMP/htdoc
-   ln -s ~/lang/php/blog/public blog
-</code></pre>
-  </li>
+# シンボリックリンク作成
+ cd /Applications/MAMP/htdoc
+ ln -s ~/lang/php/blog/public blog
+</code></pre></li>
 </ul>
 
 <p>これで準備ができました。(MAMPは起動しておいてください！)
 以下にアクセスするとFuelPHPのページが表示されるはずです。</p>
 
-<p>http://localhost:8888/blog</p>
+<p><a href="http://localhost:8888/blog">http://localhost:8888/blog</a></p>
 
-<h3 id="scaffold">scaffoldを使って簡単なブログっぽいアプリを作ってみる</h3>
+<h3 id="scaffoldを使って簡単なブログっぽいアプリを作ってみる">scaffoldを使って簡単なブログっぽいアプリを作ってみる</h3>
 
 <pre><code>oil generate scaffold post title:string summary:varchar[250] body:text
 </code></pre>
 
 <p>これだけでok</p>
 
-<h4 id="oil-">oil を実行しようとして以下のエラーが出た場合</h4>
+<h4 id="oil-を実行しようとして以下のエラーが出た場合">oil を実行しようとして以下のエラーが出た場合</h4>
+
 <pre><code>/Applications/MAMP/htdocs/blog% oil
 This is not a valid Fuel installation so Oil is a bit lost.
 http://fuelphp.com/docs/installation/instructions.html
@@ -96,7 +101,8 @@ http://fuelphp.com/docs/installation/instructions.html
 著者の環境では User/kurotaky/lang/php/blog に移動して実行すればOK
 </code></pre>
 
-<h4 id="section-1">あるいは、こんなエラーが出た場合</h4>
+<h4 id="あるいは、こんなエラーが出た場合">あるいは、こんなエラーが出た場合</h4>
+
 <pre><code>/Users/kurotaky/lang/php/blog% oil generate scaffold post title:string summary:varchar[250] body:text
 zsh: no matches found: summary:varchar[250]
 
@@ -120,54 +126,57 @@ Creating view: /Users/kurotaky/lang/php/blog/fuel/app/views/template.php
 # phpMyAdminであらかじめテーブルを作っていないと例外が出るかも。
 </code></pre>
 
-<p>http://localhost:8888/MAMP/?language=Japanese の phpMyAdminからデータベースを選択して、
+<p><a href="http://localhost:8888/MAMP/?language=Japanese">http://localhost:8888/MAMP/?language=Japanese</a> の phpMyAdminからデータベースを選択して、
 データベースを作成してください。(ここではfuel_devとしています)</p>
 
 <p><img alt="データベースの作成" src="/images/20121224/20121224_create_db.png" /></p>
 
 <p>データベース作成後、config/development/db.php の dsnの値を設定してください。
-データベース名をfuel_devとした場合は、dbname=fuel_devとしてください。</p>
+データベース名をfuel<em>devとした場合は、dbname=fuel</em>devとしてください。</p>
 
 <p><img alt="development dbの設定" src="/images/20121224/20121224_development_db.png" /></p>
 
 <p>たったこれだけで記事を作成・読み取り・更新・削除が出来る簡単なブログっぽいアプリの完成です！
 アクセスして確認してみましょう。</p>
 
-<p>http://localhost:8888/blog/post</p>
+<p><a href="http://localhost:8888/blog/post">http://localhost:8888/blog/post</a></p>
 
-<p>記事を投稿できます。<br />
+<p>記事を投稿できます。<br>
 <img alt="簡単ブログの完成1" src="/images/20121224/20121224_blog1.png" /></p>
 
-<p>投稿した記事の一覧が確認できます。<br />
+<p>投稿した記事の一覧が確認できます。<br>
 <img alt="簡単ブログの完成2" src="/images/20121224/20121224_blog2.png" /></p>
 
-<p>データベースにも反映されていますね。<br />
+<p>データベースにも反映されていますね。<br>
 <img alt="phpmyadmin" src="/images/20121224/20121224_phpmyadmin.png" /></p>
 
-<h3 id="section-2">さらに詳しく</h3>
+<h3 id="さらに詳しく">さらに詳しく</h3>
+
 <p>現在、以下の書籍を読んでいますがFuelPHPの特徴を理解するだけでなく、
 MVCモデルの基本的な説明やOSごとの環境設定、ユニットテストの方法なども書かれているので、
 ぜひまだ以下の本を持っていないかたは手にとって読んでみてください！</p>
 
 <ul>
-  <li><a href="http://tatsu-zine.com/books/fuelphp1st">はじめてのフレームワークとしてのFuelPHP</a></li>
+<li><a href="http://tatsu-zine.com/books/fuelphp1st">はじめてのフレームワークとしてのFuelPHP</a></li>
 </ul>
 
-<h3 id="section-3">日本語ドキュメント翻訳募集をしているようです。</h3>
+<h3 id="日本語ドキュメント翻訳募集をしているようです。">日本語ドキュメント翻訳募集をしているようです。</h3>
+
 <p>有志の方たちが翻訳作業を進めているようです。</p>
 
 <ul>
-  <li>https://github.com/NEKOGET/FuelPHP_docs_jp</li>
-  <li><a href="http://pneskin2.nekoget.com/press/?p=1044">FuelPHPドキュメント翻訳へのお誘い</a></li>
+<li><a href="https://github.com/NEKOGET/FuelPHP_docs_jp">https://github.com/NEKOGET/FuelPHP_docs_jp</a></li>
+<li><a href="http://pneskin2.nekoget.com/press/?p=1044">FuelPHPドキュメント翻訳へのお誘い</a></li>
 </ul>
 
 <p>自分も少しずつ出来るところはコミットしていきたいと思います。</p>
 
-<h3 id="section-4">参考にしたサイト</h3>
+<h3 id="参考にしたサイト">参考にしたサイト</h3>
+
 <ul>
-  <li>http://d.hatena.ne.jp/Kenji_s/20111109/1320827056</li>
-  <li>http://net.tutsplus.com/tutorials/php/getting-started-with-the-fuel-php-framework/</li>
-  <li>http://press.nekoget.com/fuelphp_doc/</li>
+<li><a href="http://d.hatena.ne.jp/Kenji_s/20111109/1320827056">http://d.hatena.ne.jp/Kenji_s/20111109/1320827056</a></li>
+<li><a href="http://net.tutsplus.com/tutorials/php/getting-started-with-the-fuel-php-framework/">http://net.tutsplus.com/tutorials/php/getting-started-with-the-fuel-php-framework/</a></li>
+<li><a href="http://press.nekoget.com/fuelphp_doc/">http://press.nekoget.com/fuelphp_doc/</a></li>
 </ul>
 
 <p>明日は<a href="https://twitter.com/Tukimikage">@tukimikage</a> さんです。

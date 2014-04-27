@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
     <title>blog.mo-fu.org</title>
+    <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/all.css" rel="stylesheet" type="text/css" />
     <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
   </head>
   <body>
@@ -13,20 +15,18 @@
   <h2><a href="/2014/01/09/install-ggplot2.html">ggplot2をインストールして使うまで</a> <span>Jan  9</span></h2>
   <!-- use article.summary(250) if you have Nokogiri available to show just
        the first 250 characters -->
-  <h2 id="section">インストール</h2>
+  <h2 id="インストール">インストール</h2>
 
 <p>Rコンソールを開いて以下のコマンドを入力する。</p>
 
-<p>```
-install.packages("ggplot2")</p>
+<pre><code>install.packages(&quot;ggplot2&quot;)
 
-<p>```</p>
+</code></pre>
 
-<h2 id="section-1">グラフを出力する</h2>
+<h2 id="グラフを出力する">グラフを出力する</h2>
 
-<p>```
-&gt; library(ggplot2)
-&gt; data &lt;- read.csv("/Users/yuta/201401-lines-of-code.csv")
+<pre><code>&gt; library(ggplot2)
+&gt; data &lt;- read.csv(&quot;/Users/yuta/201401-lines-of-code.csv&quot;)
 &gt; data
   day lines
 1   1    53
@@ -37,9 +37,9 @@ install.packages("ggplot2")</p>
 6   6    34
 7   7    79
 8   8   206
-&gt; ggplot(data, aes(x=day, y=lines)) + geom_line() + geom_point()</p>
+&gt; ggplot(data, aes(x=day, y=lines)) + geom_line() + geom_point()
 
-<p>```</p>
+</code></pre>
 
   <h2><a href="/2014/01/05/backup-to-amazon-s3.html">SqaleからAmazonS3にDBをバックアップする</a> <span>Jan  5</span></h2>
   <!-- use article.summary(250) if you have Nokogiri available to show just
@@ -47,7 +47,7 @@ install.packages("ggplot2")</p>
   <p>Sqale で運用しているアプリケーションのDBのdumpファイルを
 S3のバケットに保存する方法です。</p>
 
-<h2 id="section">はじめに</h2>
+<h2 id="はじめに">はじめに</h2>
 
 <p>AWSのAccess Keyを管理画面で閲覧してメモしておいてください。
 Security Credentials を選択、Access Keys をクリックするとAccess Key IDが表示されます。</p>
@@ -55,296 +55,271 @@ Security Credentials を選択、Access Keys をクリックするとAccess Key 
 <p>こちらにアクセスキーに関する説明があります。</p>
 
 <ul>
-  <li>http://blogs.aws.amazon.com/security/post/Tx1R9KDN9ISZ0HF/Where-s-my-secret-access-key</li>
+<li><a href="http://blogs.aws.amazon.com/security/post/Tx1R9KDN9ISZ0HF/Where-s-my-secret-access-key">http://blogs.aws.amazon.com/security/post/Tx1R9KDN9ISZ0HF/Where-s-my-secret-access-key</a></li>
 </ul>
 
-<h2 id="s3">S3にバケット作成する</h2>
+<h2 id="s3にバケット作成する">S3にバケット作成する</h2>
 
 <p>gateway.sqale.jp にsshログイン。</p>
 
-<p><code>
-ssh gateway.sqale.jp -p 2222
-</code></p>
+<pre><code>ssh gateway.sqale.jp -p 2222
+</code></pre>
 
 <p>以下のコマンドを入力したあと、AWSのアクセスキーとシークレットキー入力します。</p>
 
-<p>```
-s3cmd –configure</p>
+<pre><code>s3cmd --configure
 
-<p>```</p>
+</code></pre>
 
 <p><code>s3cmd mb</code> コマンドでS3にバケットを作成します。</p>
 
-<p><code>
-s3cmd mb s3://sampleapp-backup
-</code></p>
+<pre><code>s3cmd mb s3://sampleapp-backup
+</code></pre>
 
 <p>以下のようにメッセージが出力されれば、バケットの作成が完了です。</p>
 
-<p><code>
-Bucket 's3://sampleapp-backup/' created
-</code></p>
+<pre><code>Bucket &#39;s3://sampleapp-backup/&#39; created
+</code></pre>
 
-<h2 id="s3dump">S3にdumpファイルをアップロードする</h2>
+<h2 id="s3にdumpファイルをアップロードする">S3にdumpファイルをアップロードする</h2>
+
 <p><code>s3cmd put</code> コマンドでdumpファイルをアップロードします。</p>
 
-<p><code>
-s3cmd put 20140105-sampleapp-mysql.dump s3://sampleapp-backup/20140105-sampleapp-mysql.dump
-</code></p>
+<pre><code>s3cmd put 20140105-sampleapp-mysql.dump s3://sampleapp-backup/20140105-sampleapp-mysql.dump
+</code></pre>
 
-<h2 id="dumps3">定期的にdumpファイルをS3に保存する</h2>
+<h2 id="定期的にdumpファイルをs3に保存する">定期的にdumpファイルをS3に保存する</h2>
+
 <p>以下のようにrake task を作成してcronで設定すれば、
 定期的にdumpファイルを保存することができます。</p>
 
-<p>```ruby
-namespace :db do
-  desc "mysql dump: db backup to Amazon S3"</p>
+<pre><code class="ruby">namespace :db do
+  desc &quot;mysql dump: db backup to Amazon S3&quot;
 
-<p>task :backup =&gt; :environment do
-    system "mysqldump -u #{ENV['SQALE_USERNAME']} -h #{ENV['SQALE_HOST']} -p #{ENV['SQALE_DATABASE']} –password=#{ENV['SQALE_PASSWORD']} &gt; ../tmp/#{Time.now.strftime('%Y%m%d')}-sampleapp-mysql.dump"
-    system "s3cmd put ../tmp/#{Time.now.strftime('%Y%m%d')}-sampleapp-mysql.dump s3://sampleapp-backup/#{Time.now.year}/#{Time.now.month}/"
+  task :backup =&gt; :environment do
+    system &quot;mysqldump -u #{ENV[&#39;SQALE_USERNAME&#39;]} -h #{ENV[&#39;SQALE_HOST&#39;]} -p #{ENV[&#39;SQALE_DATABASE&#39;]} --password=#{ENV[&#39;SQALE_PASSWORD&#39;]} &gt; ../tmp/#{Time.now.strftime(&#39;%Y%m%d&#39;)}-sampleapp-mysql.dump&quot;
+    system &quot;s3cmd put ../tmp/#{Time.now.strftime(&#39;%Y%m%d&#39;)}-sampleapp-mysql.dump s3://sampleapp-backup/#{Time.now.year}/#{Time.now.month}/&quot;
   end
 end
-```</p>
+</code></pre>
 
-<h2 id="url">参考URL</h2>
+<h2 id="参考url">参考URL</h2>
+
 <ul>
-  <li>http://blogs.aws.amazon.com/security/post/Tx1R9KDN9ISZ0HF/Where-s-my-secret-access-key</li>
-  <li>https://sqale.jp/support/manual/db-backup-restore</li>
+<li><a href="http://blogs.aws.amazon.com/security/post/Tx1R9KDN9ISZ0HF/Where-s-my-secret-access-key">http://blogs.aws.amazon.com/security/post/Tx1R9KDN9ISZ0HF/Where-s-my-secret-access-key</a></li>
+<li><a href="https://sqale.jp/support/manual/db-backup-restore">https://sqale.jp/support/manual/db-backup-restore</a></li>
 </ul>
 
   <h2><a href="/2013/12/24/how-to-use-git-on-heteml.html">hetemlレンタルサーバーでgitを使う</a> <span>Dec 24</span></h2>
   <!-- use article.summary(250) if you have Nokogiri available to show just
        the first 250 characters -->
-  <h2 id="git">gitの初期設定</h2>
+  <h2 id="gitの初期設定">gitの初期設定</h2>
 
 <p>ターミナルを使ってsshでログインします。</p>
 
-<p><code>
-ssh username@ssh***.heteml.jp -p 2222
-</code></p>
+<pre><code>ssh username@ssh***.heteml.jp -p 2222
+</code></pre>
 
 <p>2013/12/24現在gitのバージョンは1.7.3.4でした。</p>
 
-<p>```
--bash-3.00$ pwd
-/home/sites/heteml/users***/u/s/e/username</p>
+<pre><code>-bash-3.00$ pwd
+/home/sites/heteml/users***/u/s/e/username
 
-<p>-bash-3.00$ git –version
+-bash-3.00$ git --version
 git version 1.7.3.4
-```</p>
+</code></pre>
 
 <p>ログイン後、ユーザー名とメールアドレス等の設定をします。</p>
 
-<p>```
-# ユーザー名とメールアドレスの設定
-git config –global user.email "username@example.com"<br />
-git config –global user.name "username"</p>
+<pre><code># ユーザー名とメールアドレスの設定
+git config --global user.email &quot;username@example.com&quot;  
+git config --global user.name &quot;username&quot;
 
-<h1 id="section">端末に色つきの文字を出力する</h1>
-<p>git config –global color.ui auto
-```</p>
+# 端末に色つきの文字を出力する
+git config --global color.ui auto
+</code></pre>
 
 <p>設定を確認します。</p>
 
-<p><code>
-git config --global --list
-</code></p>
+<pre><code>git config --global --list
+</code></pre>
 
-<h2 id="heteml">heteml上にリポジトリを作成する</h2>
+<h2 id="heteml上にリポジトリを作成する">heteml上にリポジトリを作成する</h2>
 
 <p>ディレクトリを作成して、移動します。</p>
 
-<p><code>
-mkdir myproject
+<pre><code>mkdir myproject
 cd myproject
-</code></p>
+</code></pre>
 
 <p>git init コマンドでリポジトリを作成します。</p>
 
-<p><code>
-git init
-</code></p>
+<pre><code>git init
+</code></pre>
 
-<p><code>
-Initialized empty Git repository in /home/sites/heteml/users***/u/s/e/username/myproject/.git/
-</code></p>
+<pre><code>Initialized empty Git repository in /home/sites/heteml/users***/u/s/e/username/myproject/.git/
+</code></pre>
 
 <p>index.html を作成します。</p>
 
-<p><code>
-touch index.html
-</code></p>
+<pre><code>touch index.html
+</code></pre>
 
 <p>git status コマンドで変更内容を確認します。</p>
 
-<p><code>
-git status
-</code></p>
+<pre><code>git status
+</code></pre>
 
 <p>コマンドを実行すると、以下のように表示されます。</p>
 
-<p><code>
-# On branch master
+<pre><code># On branch master
 #
 # Initial commit
 #
 # Untracked files:
-#   (use "git add &lt;file&gt;..." to include in what will be committed)
+#   (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
 #
-#	index.html
-nothing added to commit but untracked files present (use "git add" to track)
-</code></p>
+#   index.html
+nothing added to commit but untracked files present (use &quot;git add&quot; to track)
+</code></pre>
 
 <p>git add コマンドを実行します。</p>
 
-<p><code>
-git add index.html
-</code></p>
+<pre><code>git add index.html
+</code></pre>
 
 <p>git add した後に git status コマンドを実行すると、以下のように表示されます。</p>
 
-<p>```
-# On branch master
+<pre><code># On branch master
 #
 # Initial commit
 #
 # Changes to be committed:
-#   (use "git rm –cached <file>..." to unstage)
+#   (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)
 #
-#	new file:   index.html
-#</file></p>
+#   new file:   index.html
+#
 
-<p>```</p>
+</code></pre>
 
 <p>git commit コマンドでコミットします。</p>
 
-<p><code>
-git commit -m 'first commit'
-</code></p>
+<pre><code>git commit -m &#39;first commit&#39;
+</code></pre>
 
 <p>tig や git log で確認するとコミット履歴を見ることが出来ます。</p>
 
-<h2 id="hetemlpcpush">hetemlにリポジトリを作成してローカルPCからpushする</h2>
+<h2 id="hetemlにリポジトリを作成してローカルpcからpushする">hetemlにリポジトリを作成してローカルPCからpushする</h2>
+
 <p>heteml に sshログインして、ディレクトリを作成します。</p>
 
-<p><code>
-mkdir repos
+<pre><code>mkdir repos
 cd repos
 mkdir myproject.git
 cd myproject.git
-</code></p>
+</code></pre>
 
 <p>git init コマンドでリポジトリを作成します。
 この時に <code>--bare</code> オプションを指定すると変更のみを管理するリポジトリを作成することができます。
 また、 <code>--shared</code> オプションを指定すると共同リポジトリとして作成することが出来ます。</p>
 
-<p><code>
-git init --bare --shared
-</code></p>
+<pre><code>git init --bare --shared
+</code></pre>
 
 <p>ローカルPCでmyprojectのリポジトリを作成します。</p>
 
-<p><code>
-mkdir myproject
+<pre><code>mkdir myproject
 cd myproject
 git init
-</code></p>
+</code></pre>
 
 <p>hetemlに作成したリポジトリのURLを git remote コマンドで登録します。</p>
 
-<p><code>
-git remote add origin ssh://username@ssh***.heteml.jp:2222/home/sites/heteml/users***/u/s/e/username/repos/myproject.git
-</code></p>
+<pre><code>git remote add origin ssh://username@ssh***.heteml.jp:2222/home/sites/heteml/users***/u/s/e/username/repos/myproject.git
+</code></pre>
 
 <p>git remote -v で登録情報を確認できます。</p>
 
-<p><code>
-git remote -v
-</code></p>
+<pre><code>git remote -v
+</code></pre>
 
 <p>ファイルを作成します。</p>
 
-<p><code>
-touch a.txt
-</code></p>
+<pre><code>touch a.txt
+</code></pre>
 
 <p>add して commit します。</p>
 
-<p><code>
-git add .
-git commit -m 'inital import'
-</code></p>
+<pre><code>git add .
+git commit -m &#39;inital import&#39;
+</code></pre>
 
 <p>hetemlのリポジトリにpushして変更内容を反映させます。</p>
 
-<p><code>
-git push origin master
-</code></p>
+<pre><code>git push origin master
+</code></pre>
 
 <p>sshログインのためのパスワードを聞かれるので、入力して下さい。</p>
 
-<h2 id="section-1">```</h2>
-<p>–<strong><em>——————————————-</em></strong>–
-–<strong><em>—————</em></strong>————————-<strong><em>–
-–</em></strong>—————<strong>**</strong>———————-<strong><em>–
-–</em></strong><strong>**<em>-</em></strong><strong>**<em>-</em></strong><strong><em>-</em></strong><strong>**<em>-</em></strong><strong>**</strong><strong>-</strong><em>–
-–</em><strong>**</strong><em>-</em><strong>–</strong><em>-</em><strong>—-</strong><em>–</em><strong>-</strong><strong>**</strong><strong><em>-</em></strong>–
-–<strong><em>–</em></strong>-<strong>**</strong><strong>-</strong><em>—-</em><strong>**</strong><em>-</em><strong>-</strong><em>-</em><strong>-</strong><em>–
-–</em><strong>–</strong><em>-</em><strong>——</strong><strong>**-</strong><em>——</em><strong>-</strong><em>-</em><strong>-</strong><em>–
-–</em><strong>–</strong><em>-</em><strong>**</strong><em>-</em><strong>**<em>-</em></strong><strong>**<em>-</em></strong>-<strong><em>-</em></strong>-***–
-—————————————————–</p>
+<pre><code>-----------------------------------------------------
+--***-------------------------------------------***--
+--***---------------***-------------------------***--
+--***---------------******----------------------***--
+--********-********-******-********-***********-***--
+--********-***--***-***----***--***-***********-***--
+--***--***-********-***----********-***-***-***-***--
+--***--***-***------******-***------***-***-***-***--
+--***--***-********-******-********-***-***-***-***--
+-----------------------------------------------------
 
-<p>username@ssh***.heteml.jp's password:
-```</p>
+username@ssh***.heteml.jp&#39;s password:
+</code></pre>
 
 <p>パスワードを入力すると、以下のようにhetemlのリポジトリに変更内容が反映されます。</p>
 
-<p><code>
-Counting objects: 3, done.
+<pre><code>Counting objects: 3, done.
 Writing objects: 100% (3/3), 215 bytes | 0 bytes/s, done.
 Total 3 (delta 0), reused 0 (delta 0)
 To ssh://kuro96@ssh160.heteml.jp:2222/home/sites/heteml/users160/k/u/r/kuro96/repos/myproject.git
  * [new branch]      master -&gt; master
-</code></p>
+</code></pre>
 
 <p>hetemlにsshログイン後、myproject.git に移動して、<code>git log -p</code> コマンドで変更内容を確認します。</p>
 
-<p><code>
-cd repos/myproject.git
+<pre><code>cd repos/myproject.git
 git log -p
-</code></p>
+</code></pre>
 
 <p>以下のように変更が反映されていることを確認できます。</p>
 
-<p>```
-commit 522111a8845c66aebb95de63bb6a65d405d33c2c
-Author: kurotaky <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#117;&#115;&#101;&#114;&#110;&#097;&#109;&#101;&#064;&#101;&#120;&#097;&#109;&#112;&#108;&#101;&#046;&#099;&#111;&#109;">&#117;&#115;&#101;&#114;&#110;&#097;&#109;&#101;&#064;&#101;&#120;&#097;&#109;&#112;&#108;&#101;&#046;&#099;&#111;&#109;</a>
-Date:   Tue Dec 24 09:43:43 2013 +0900</p>
+<pre><code>commit 522111a8845c66aebb95de63bb6a65d405d33c2c
+Author: kurotaky &lt;username@example.com&gt;
+Date:   Tue Dec 24 09:43:43 2013 +0900
 
-<pre><code>inital import
-</code></pre>
+    inital import
 
-<p>diff –git a/a.txt b/a.txt
+diff --git a/a.txt b/a.txt
 new file mode 100644
 index 0000000..e69de29
-```</p>
+</code></pre>
 
-<h2 id="url">参考URL</h2>
+<h2 id="参考url">参考URL</h2>
+
 <ul>
-  <li>http://d.hatena.ne.jp/bannyan/20100308/1268066849</li>
-  <li>http://git-scm.com/book/ja/Git-%E3%81%AE%E5%9F%BA%E6%9C%AC-Git-%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%81%AE%E5%8F%96%E5%BE%97</li>
+<li><a href="http://d.hatena.ne.jp/bannyan/20100308/1268066849">http://d.hatena.ne.jp/bannyan/20100308/1268066849</a></li>
+<li><a href="http://git-scm.com/book/ja/Git-%E3%81%AE%E5%9F%BA%E6%9C%AC-Git-%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%81%AE%E5%8F%96%E5%BE%97">http://git-scm.com/book/ja/Git-%E3%81%AE%E5%9F%BA%E6%9C%AC-Git-%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%81%AE%E5%8F%96%E5%BE%97</a></li>
 </ul>
 
-<h2 id="section-2">参考文献</h2>
+<h2 id="参考文献">参考文献</h2>
+
 <ul>
-  <li>http://www.amazon.co.jp/dp/4274068641</li>
+<li><a href="http://www.amazon.co.jp/dp/4274068641">http://www.amazon.co.jp/dp/4274068641</a></li>
 </ul>
 
   <h2><a href="/2013/11/18/about-testing-for-private-method.html">プライベートメソッドのテストについて</a> <span>Nov 18</span></h2>
   <!-- use article.summary(250) if you have Nokogiri available to show just
        the first 250 characters -->
-  <h3 id="section">プライベートメソッドのテスト書いてて思ったことの記録</h3>
+  <h3 id="プライベートメソッドのテスト書いてて思ったことの記録">プライベートメソッドのテスト書いてて思ったことの記録</h3>
 
 <p>とあるプロダクトで、APIにRequestを送る部分のテストを書いている時に、
 private メソッドをテストしようとしたところ、むむ、テストできないぞ！
@@ -381,28 +356,30 @@ privateなメソッドのテストを書くことは、リファクタリング�
 <p>納期と自分の技術と要相談ですが、RED → GREEN → リファクタリングを繰り返して、
 privateメソッドのテストを消せた時には良い設計に近づいているはず！</p>
 
-<h3 id="section-1">参考</h3>
-<p>プライベートメソッドのユニットテストは書かないもの？<br />
-http://qa.atmarkit.co.jp/q/2784</p>
+<h3 id="参考">参考</h3>
+
+<p>プライベートメソッドのユニットテストは書かないもの？<br>
+<a href="http://qa.atmarkit.co.jp/q/2784">http://qa.atmarkit.co.jp/q/2784</a></p>
 
 <p>privateメソッドのテストについて気になったので読んでみた。勉強になる！</p>
 
   <h2><a href="/2013/09/29/install-mac-vim74.html">install-mac-vim74</a> <span>Sep 29</span></h2>
   <!-- use article.summary(250) if you have Nokogiri available to show just
        the first 250 characters -->
-  <p>Vim7.4 が出ているのでインストールしました。<br />
-http://vim-jp.org/blog/2013/08/10/vim_7.4_released.html</p>
+  <p>Vim7.4 が出ているのでインストールしました。<br>
+<a href="http://vim-jp.org/blog/2013/08/10/vim_7.4_released.html">http://vim-jp.org/blog/2013/08/10/vim_7.4_released.html</a></p>
 
-<h3 id="macvim74">macにVim7.4をインストールする。</h3>
-<p>MacVim-KaoriYa を使う場合、ダウンロードはこちらから。<br />
-https://code.google.com/p/macvim-kaoriya/downloads/list</p>
+<h3 id="macにvim7.4をインストールする。">macにVim7.4をインストールする。</h3>
+
+<p>MacVim-KaoriYa を使う場合、ダウンロードはこちらから。<br>
+<a href="https://code.google.com/p/macvim-kaoriya/downloads/list">https://code.google.com/p/macvim-kaoriya/downloads/list</a></p>
 
 <p>インストール後、Launchpad のMacVim アイコンをクリックすれば、
 アプリケーションが起動されます。</p>
 
 <p>コンソールで <code>vim</code> を使いたい場合は、alias でパスを指定する。
-自分はzsh を使っているので、 <code>.zshrc</code> に以下のような設定を追記する。<br />
-<code>alias -g vim='/Applications/MacVim.app/Contents/MacOS/vim'</code></p>
+自分はzsh を使っているので、 <code>.zshrc</code> に以下のような設定を追記する。<br>
+<code>alias -g vim=&#39;/Applications/MacVim.app/Contents/MacOS/vim&#39;</code></p>
 
 <p>コンソールで <code>source ~/.zshrc</code> を入力して、変更を反映させる。</p>
 
@@ -427,21 +404,24 @@ https://code.google.com/p/macvim-kaoriya/downloads/list</p>
 
 <p>まずは環境設定からです。</p>
 
-<h2 id="section">必要な環境</h2>
+<h2 id="必要な環境">必要な環境</h2>
+
 <ul>
-  <li>MacOSX Lion(10.7.4)</li>
-  <li>エディタ(SublimeText2など)</li>
-  <li>MAMP(Apache, PHP, MySQL)</li>
-  <li>FuelPHP 1.4</li>
+<li>MacOSX Lion(10.7.4)</li>
+<li>エディタ(SublimeText2など)</li>
+<li>MAMP(Apache, PHP, MySQL)</li>
+<li>FuelPHP 1.4</li>
 </ul>
 
-<h3 id="sublime-text2">Sublime Text2インストール</h3>
+<h3 id="sublime-text2インストール">Sublime Text2インストール</h3>
+
 <p>普段使ってるエディタがある人はそれを使ってください。
 今回はSublime Text2を使ってファイルを編集しました。</p>
 
 <p><a href="http://www.sublimetext.com/">Sublime Text2</a></p>
 
-<h3 id="mamp">MAMPインストール</h3>
+<h3 id="mampインストール">MAMPインストール</h3>
+
 <p>ここからインストールしてください！</p>
 
 <p><a href="http://www.mamp.info/en/index.html">MAMPダウンロード</a></p>
@@ -449,53 +429,53 @@ https://code.google.com/p/macvim-kaoriya/downloads/list</p>
 <p>MAMPのphpを使用するための設定</p>
 
 <pre><code># ~/.bash_profile または ~/.zshrc をエディタで開いて入力してください。
-export PATH="/Applications/MAMP/bin/php/php5.3.14/bin:$PATH"
+export PATH=&quot;/Applications/MAMP/bin/php/php5.3.14/bin:$PATH&quot;
 
 # 設定を反映
 /Users/kurotaky/lang/php% source ~/.zshrc
 </code></pre>
 
-<h3 id="fuelphp">FuelPHPをインストール</h3>
+<h3 id="fuelphpをインストール">FuelPHPをインストール</h3>
+
 <p>こちらを参考にしてインストールしました。</p>
 
 <ul>
-  <li><a href="http://fuelphp.com/">FuelPHP</a></li>
-  <li>
-    <p><a href="http://press.nekoget.com/fuelphp_doc/">FuelPHP日本語ドキュメント</a></p>
+<li><a href="http://fuelphp.com/">FuelPHP</a></li>
+<li><p><a href="http://press.nekoget.com/fuelphp_doc/">FuelPHP日本語ドキュメント</a></p>
 
-    <pre><code>  # oil インストール
-   curl get.fuelphp.com/oil | sh
+<pre><code># oil インストール
+ curl get.fuelphp.com/oil | sh
 
-  # oil create [アプリケーション名] でアプリケーションを作成
-   /Users/kurotaky/lang/php% oil create blog
+# oil create [アプリケーション名] でアプリケーションを作成
+ /Users/kurotaky/lang/php% oil create blog
 
-   # ↓ コマンドを実行すると以下の様なメッセージが出るはず、少し時間がかかります
-   Cloning into './blog'...
-   remote: Counting objects: 14502, done.
-   remote: Compressing objects: 100% (5019/5019), done.
-   remote: Total 14502 (delta 9862), reused 13643 (delta 9246)
-   Receiving objects: 100% (14502/14502), 2.21 MiB | 183 KiB/s, done.
+ # ↓ コマンドを実行すると以下の様なメッセージが出るはず、少し時間がかかります
+ Cloning into &#39;./blog&#39;...
+ remote: Counting objects: 14502, done.
+ remote: Compressing objects: 100% (5019/5019), done.
+ remote: Total 14502 (delta 9862), reused 13643 (delta 9246)
+ Receiving objects: 100% (14502/14502), 2.21 MiB | 183 KiB/s, done.
 
-  # シンボリックリンク作成
-   cd /Applications/MAMP/htdoc
-   ln -s ~/lang/php/blog/public blog
-</code></pre>
-  </li>
+# シンボリックリンク作成
+ cd /Applications/MAMP/htdoc
+ ln -s ~/lang/php/blog/public blog
+</code></pre></li>
 </ul>
 
 <p>これで準備ができました。(MAMPは起動しておいてください！)
 以下にアクセスするとFuelPHPのページが表示されるはずです。</p>
 
-<p>http://localhost:8888/blog</p>
+<p><a href="http://localhost:8888/blog">http://localhost:8888/blog</a></p>
 
-<h3 id="scaffold">scaffoldを使って簡単なブログっぽいアプリを作ってみる</h3>
+<h3 id="scaffoldを使って簡単なブログっぽいアプリを作ってみる">scaffoldを使って簡単なブログっぽいアプリを作ってみる</h3>
 
 <pre><code>oil generate scaffold post title:string summary:varchar[250] body:text
 </code></pre>
 
 <p>これだけでok</p>
 
-<h4 id="oil-">oil を実行しようとして以下のエラーが出た場合</h4>
+<h4 id="oil-を実行しようとして以下のエラーが出た場合">oil を実行しようとして以下のエラーが出た場合</h4>
+
 <pre><code>/Applications/MAMP/htdocs/blog% oil
 This is not a valid Fuel installation so Oil is a bit lost.
 http://fuelphp.com/docs/installation/instructions.html
@@ -504,7 +484,8 @@ http://fuelphp.com/docs/installation/instructions.html
 著者の環境では User/kurotaky/lang/php/blog に移動して実行すればOK
 </code></pre>
 
-<h4 id="section-1">あるいは、こんなエラーが出た場合</h4>
+<h4 id="あるいは、こんなエラーが出た場合">あるいは、こんなエラーが出た場合</h4>
+
 <pre><code>/Users/kurotaky/lang/php/blog% oil generate scaffold post title:string summary:varchar[250] body:text
 zsh: no matches found: summary:varchar[250]
 
@@ -528,54 +509,57 @@ Creating view: /Users/kurotaky/lang/php/blog/fuel/app/views/template.php
 # phpMyAdminであらかじめテーブルを作っていないと例外が出るかも。
 </code></pre>
 
-<p>http://localhost:8888/MAMP/?language=Japanese の phpMyAdminからデータベースを選択して、
+<p><a href="http://localhost:8888/MAMP/?language=Japanese">http://localhost:8888/MAMP/?language=Japanese</a> の phpMyAdminからデータベースを選択して、
 データベースを作成してください。(ここではfuel_devとしています)</p>
 
 <p><img alt="データベースの作成" src="/images/20121224/20121224_create_db.png" /></p>
 
 <p>データベース作成後、config/development/db.php の dsnの値を設定してください。
-データベース名をfuel_devとした場合は、dbname=fuel_devとしてください。</p>
+データベース名をfuel<em>devとした場合は、dbname=fuel</em>devとしてください。</p>
 
 <p><img alt="development dbの設定" src="/images/20121224/20121224_development_db.png" /></p>
 
 <p>たったこれだけで記事を作成・読み取り・更新・削除が出来る簡単なブログっぽいアプリの完成です！
 アクセスして確認してみましょう。</p>
 
-<p>http://localhost:8888/blog/post</p>
+<p><a href="http://localhost:8888/blog/post">http://localhost:8888/blog/post</a></p>
 
-<p>記事を投稿できます。<br />
+<p>記事を投稿できます。<br>
 <img alt="簡単ブログの完成1" src="/images/20121224/20121224_blog1.png" /></p>
 
-<p>投稿した記事の一覧が確認できます。<br />
+<p>投稿した記事の一覧が確認できます。<br>
 <img alt="簡単ブログの完成2" src="/images/20121224/20121224_blog2.png" /></p>
 
-<p>データベースにも反映されていますね。<br />
+<p>データベースにも反映されていますね。<br>
 <img alt="phpmyadmin" src="/images/20121224/20121224_phpmyadmin.png" /></p>
 
-<h3 id="section-2">さらに詳しく</h3>
+<h3 id="さらに詳しく">さらに詳しく</h3>
+
 <p>現在、以下の書籍を読んでいますがFuelPHPの特徴を理解するだけでなく、
 MVCモデルの基本的な説明やOSごとの環境設定、ユニットテストの方法なども書かれているので、
 ぜひまだ以下の本を持っていないかたは手にとって読んでみてください！</p>
 
 <ul>
-  <li><a href="http://tatsu-zine.com/books/fuelphp1st">はじめてのフレームワークとしてのFuelPHP</a></li>
+<li><a href="http://tatsu-zine.com/books/fuelphp1st">はじめてのフレームワークとしてのFuelPHP</a></li>
 </ul>
 
-<h3 id="section-3">日本語ドキュメント翻訳募集をしているようです。</h3>
+<h3 id="日本語ドキュメント翻訳募集をしているようです。">日本語ドキュメント翻訳募集をしているようです。</h3>
+
 <p>有志の方たちが翻訳作業を進めているようです。</p>
 
 <ul>
-  <li>https://github.com/NEKOGET/FuelPHP_docs_jp</li>
-  <li><a href="http://pneskin2.nekoget.com/press/?p=1044">FuelPHPドキュメント翻訳へのお誘い</a></li>
+<li><a href="https://github.com/NEKOGET/FuelPHP_docs_jp">https://github.com/NEKOGET/FuelPHP_docs_jp</a></li>
+<li><a href="http://pneskin2.nekoget.com/press/?p=1044">FuelPHPドキュメント翻訳へのお誘い</a></li>
 </ul>
 
 <p>自分も少しずつ出来るところはコミットしていきたいと思います。</p>
 
-<h3 id="section-4">参考にしたサイト</h3>
+<h3 id="参考にしたサイト">参考にしたサイト</h3>
+
 <ul>
-  <li>http://d.hatena.ne.jp/Kenji_s/20111109/1320827056</li>
-  <li>http://net.tutsplus.com/tutorials/php/getting-started-with-the-fuel-php-framework/</li>
-  <li>http://press.nekoget.com/fuelphp_doc/</li>
+<li><a href="http://d.hatena.ne.jp/Kenji_s/20111109/1320827056">http://d.hatena.ne.jp/Kenji_s/20111109/1320827056</a></li>
+<li><a href="http://net.tutsplus.com/tutorials/php/getting-started-with-the-fuel-php-framework/">http://net.tutsplus.com/tutorials/php/getting-started-with-the-fuel-php-framework/</a></li>
+<li><a href="http://press.nekoget.com/fuelphp_doc/">http://press.nekoget.com/fuelphp_doc/</a></li>
 </ul>
 
 <p>明日は<a href="https://twitter.com/Tukimikage">@tukimikage</a> さんです。
@@ -600,7 +584,7 @@ MVCモデルの基本的な説明やOSごとの環境設定、ユニットテス
 git clone git://github.com/rails/rails.git
 </code></pre>
 
-<p>rails new –edgeを実行。(test-appを作成する。)</p>
+<p>rails new --edgeを実行。(test-appを作成する。)</p>
 
 <pre><code>rails/railties/bin/rails new test-app --edge
 </code></pre>
@@ -620,25 +604,18 @@ git clone git://github.com/rails/rails.git
     rails s
 </code></pre>
 
-<p>http://localhost:3000/products にアクセスしてアプリケーションが作成されているのを確認できた。</p>
+<p><a href="http://localhost:3000/products">http://localhost:3000/products</a> にアクセスしてアプリケーションが作成されているのを確認できた。</p>
 
-<p>http://localhost:3000/rails/info/properties にアクセスして、
+<p><a href="http://localhost:3000/rails/info/properties">http://localhost:3000/rails/info/properties</a> にアクセスして、
 RailsのVersionが4.0.0.betaになっているのを確認した。</p>
 
-<h2 id="section">参考</h2>
+<h2 id="参考">参考</h2>
+
 <ul>
-  <li>
-    <p><a href="http://edgeguides.rubyonrails.org/">Ruby on Rails Edge Guides</a></p>
-  </li>
-  <li>
-    <p><a href="https://github.com/rails/rails">Rails</a></p>
-  </li>
-  <li>
-    <p><a href="https://speakerdeck.com/spastorino/rails-4-in-30">Rails 4 in 30'</a></p>
-  </li>
-  <li>
-    <p><a href="http://blog.wyeworks.com/2012/11/13/rails-4-compilation-links/">Rails 4 links compilation</a></p>
-  </li>
+<li><p><a href="http://edgeguides.rubyonrails.org/">Ruby on Rails Edge Guides</a></p></li>
+<li><p><a href="https://github.com/rails/rails">Rails</a></p></li>
+<li><p><a href="https://speakerdeck.com/spastorino/rails-4-in-30">Rails 4 in 30&#39;</a></p></li>
+<li><p><a href="http://blog.wyeworks.com/2012/11/13/rails-4-compilation-links/">Rails 4 links compilation</a></p></li>
 </ul>
 
   <h2><a href="/2012/11/16/ppb-lightningtalk-2.html">社内LT大会第二回</a> <span>Nov 16</span></h2>
@@ -653,7 +630,7 @@ RailsのVersionが4.0.0.betaになっているのを確認した。</p>
 <p>みんなが興味持っている事を聞けるのはとても楽しいし、プレゼンする人は発表の練習にもなるので、このイベントをどんどん活用してほしいと思います。</p>
 
 <p>発表の最後に疲れた！とか10回くらい言ってすみませんでした。
-会場の準備やタイムキーパーなど手伝ってくださった方々、ありがとうございました。<br />
+会場の準備やタイムキーパーなど手伝ってくださった方々、ありがとうございました。<br>
 札幌Ruby会議2012はスタッフで参加したけど、中心になって企画する人は本当に大変なんだ！というのを今回体感することができました。</p>
 
 <p>LT大会やりたいなあーと思っているだけではできないので、自分から企画してよかったと思います。
@@ -662,7 +639,7 @@ RailsのVersionが4.0.0.betaになっているのを確認した。</p>
   <h2><a href="/2012/11/01/nebel-siteでブログはじめました.html">nebelでブログはじめました</a> <span>Nov  1</span></h2>
   <!-- use article.summary(250) if you have Nokogiri available to show just
        the first 250 characters -->
-  <p>[@banyan] (https://twitter.com/banyan)先輩に教えてもらった、nebelでブログはじめました。
+  <p><a href="https://twitter.com/banyan">@banyan</a>先輩に教えてもらった、nebelでブログはじめました。
 とりあえず初エントリーです。</p>
 
 <p>デザインとかはこれから良い感じにしていきます。</p>
@@ -670,9 +647,9 @@ RailsのVersionが4.0.0.betaになっているのを確認した。</p>
 <p>■参考</p>
 
 <ul>
-  <li>http://mizzy.org/blog/2012/04/24/1/</li>
-  <li>https://github.com/mizzy/nebel-site</li>
-  <li>http://pages.github.com/</li>
+<li><a href="http://mizzy.org/blog/2012/04/24/1/">http://mizzy.org/blog/2012/04/24/1/</a></li>
+<li><a href="https://github.com/mizzy/nebel-site">https://github.com/mizzy/nebel-site</a></li>
+<li><a href="http://pages.github.com/">http://pages.github.com/</a></li>
 </ul>
 
 

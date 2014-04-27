@@ -18,20 +18,18 @@
     <author>
       <name>Article Author</name>
     </author>
-    <content type="html">&lt;h2 id="section"&gt;インストール&lt;/h2&gt;
+    <content type="html">&lt;h2 id="インストール"&gt;インストール&lt;/h2&gt;
 
 &lt;p&gt;Rコンソールを開いて以下のコマンドを入力する。&lt;/p&gt;
 
-&lt;p&gt;```
-install.packages("ggplot2")&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;install.packages(&amp;quot;ggplot2&amp;quot;)
 
-&lt;p&gt;```&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id="section-1"&gt;グラフを出力する&lt;/h2&gt;
+&lt;h2 id="グラフを出力する"&gt;グラフを出力する&lt;/h2&gt;
 
-&lt;p&gt;```
-&amp;gt; library(ggplot2)
-&amp;gt; data &amp;lt;- read.csv("/Users/yuta/201401-lines-of-code.csv")
+&lt;pre&gt;&lt;code&gt;&amp;gt; library(ggplot2)
+&amp;gt; data &amp;lt;- read.csv(&amp;quot;/Users/yuta/201401-lines-of-code.csv&amp;quot;)
 &amp;gt; data
   day lines
 1   1    53
@@ -42,9 +40,9 @@ install.packages("ggplot2")&lt;/p&gt;
 6   6    34
 7   7    79
 8   8   206
-&amp;gt; ggplot(data, aes(x=day, y=lines)) + geom_line() + geom_point()&lt;/p&gt;
+&amp;gt; ggplot(data, aes(x=day, y=lines)) + geom_line() + geom_point()
 
-&lt;p&gt;```&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 </content>
   </entry>
   <entry>
@@ -59,7 +57,7 @@ install.packages("ggplot2")&lt;/p&gt;
     <content type="html">&lt;p&gt;Sqale で運用しているアプリケーションのDBのdumpファイルを
 S3のバケットに保存する方法です。&lt;/p&gt;
 
-&lt;h2 id="section"&gt;はじめに&lt;/h2&gt;
+&lt;h2 id="はじめに"&gt;はじめに&lt;/h2&gt;
 
 &lt;p&gt;AWSのAccess Keyを管理画面で閲覧してメモしておいてください。
 Security Credentials を選択、Access Keys をクリックするとAccess Key IDが表示されます。&lt;/p&gt;
@@ -67,62 +65,59 @@ Security Credentials を選択、Access Keys をクリックするとAccess Key 
 &lt;p&gt;こちらにアクセスキーに関する説明があります。&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;http://blogs.aws.amazon.com/security/post/Tx1R9KDN9ISZ0HF/Where-s-my-secret-access-key&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blogs.aws.amazon.com/security/post/Tx1R9KDN9ISZ0HF/Where-s-my-secret-access-key"&gt;http://blogs.aws.amazon.com/security/post/Tx1R9KDN9ISZ0HF/Where-s-my-secret-access-key&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id="s3"&gt;S3にバケット作成する&lt;/h2&gt;
+&lt;h2 id="s3にバケット作成する"&gt;S3にバケット作成する&lt;/h2&gt;
 
 &lt;p&gt;gateway.sqale.jp にsshログイン。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-ssh gateway.sqale.jp -p 2222
-&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ssh gateway.sqale.jp -p 2222
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;以下のコマンドを入力したあと、AWSのアクセスキーとシークレットキー入力します。&lt;/p&gt;
 
-&lt;p&gt;```
-s3cmd –configure&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;s3cmd --configure
 
-&lt;p&gt;```&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;code&gt;s3cmd mb&lt;/code&gt; コマンドでS3にバケットを作成します。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-s3cmd mb s3://sampleapp-backup
-&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;s3cmd mb s3://sampleapp-backup
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;以下のようにメッセージが出力されれば、バケットの作成が完了です。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-Bucket 's3://sampleapp-backup/' created
-&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Bucket &amp;#39;s3://sampleapp-backup/&amp;#39; created
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id="s3dump"&gt;S3にdumpファイルをアップロードする&lt;/h2&gt;
+&lt;h2 id="s3にdumpファイルをアップロードする"&gt;S3にdumpファイルをアップロードする&lt;/h2&gt;
+
 &lt;p&gt;&lt;code&gt;s3cmd put&lt;/code&gt; コマンドでdumpファイルをアップロードします。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-s3cmd put 20140105-sampleapp-mysql.dump s3://sampleapp-backup/20140105-sampleapp-mysql.dump
-&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;s3cmd put 20140105-sampleapp-mysql.dump s3://sampleapp-backup/20140105-sampleapp-mysql.dump
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id="dumps3"&gt;定期的にdumpファイルをS3に保存する&lt;/h2&gt;
+&lt;h2 id="定期的にdumpファイルをs3に保存する"&gt;定期的にdumpファイルをS3に保存する&lt;/h2&gt;
+
 &lt;p&gt;以下のようにrake task を作成してcronで設定すれば、
 定期的にdumpファイルを保存することができます。&lt;/p&gt;
 
-&lt;p&gt;```ruby
-namespace :db do
-  desc "mysql dump: db backup to Amazon S3"&lt;/p&gt;
+&lt;pre&gt;&lt;code class="ruby"&gt;namespace :db do
+  desc &amp;quot;mysql dump: db backup to Amazon S3&amp;quot;
 
-&lt;p&gt;task :backup =&amp;gt; :environment do
-    system "mysqldump -u #{ENV['SQALE_USERNAME']} -h #{ENV['SQALE_HOST']} -p #{ENV['SQALE_DATABASE']} –password=#{ENV['SQALE_PASSWORD']} &amp;gt; ../tmp/#{Time.now.strftime('%Y%m%d')}-sampleapp-mysql.dump"
-    system "s3cmd put ../tmp/#{Time.now.strftime('%Y%m%d')}-sampleapp-mysql.dump s3://sampleapp-backup/#{Time.now.year}/#{Time.now.month}/"
+  task :backup =&amp;gt; :environment do
+    system &amp;quot;mysqldump -u #{ENV[&amp;#39;SQALE_USERNAME&amp;#39;]} -h #{ENV[&amp;#39;SQALE_HOST&amp;#39;]} -p #{ENV[&amp;#39;SQALE_DATABASE&amp;#39;]} --password=#{ENV[&amp;#39;SQALE_PASSWORD&amp;#39;]} &amp;gt; ../tmp/#{Time.now.strftime(&amp;#39;%Y%m%d&amp;#39;)}-sampleapp-mysql.dump&amp;quot;
+    system &amp;quot;s3cmd put ../tmp/#{Time.now.strftime(&amp;#39;%Y%m%d&amp;#39;)}-sampleapp-mysql.dump s3://sampleapp-backup/#{Time.now.year}/#{Time.now.month}/&amp;quot;
   end
 end
-```&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id="url"&gt;参考URL&lt;/h2&gt;
+&lt;h2 id="参考url"&gt;参考URL&lt;/h2&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;http://blogs.aws.amazon.com/security/post/Tx1R9KDN9ISZ0HF/Where-s-my-secret-access-key&lt;/li&gt;
-  &lt;li&gt;https://sqale.jp/support/manual/db-backup-restore&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blogs.aws.amazon.com/security/post/Tx1R9KDN9ISZ0HF/Where-s-my-secret-access-key"&gt;http://blogs.aws.amazon.com/security/post/Tx1R9KDN9ISZ0HF/Where-s-my-secret-access-key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://sqale.jp/support/manual/db-backup-restore"&gt;https://sqale.jp/support/manual/db-backup-restore&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </content>
   </entry>
@@ -135,229 +130,207 @@ end
     <author>
       <name>Article Author</name>
     </author>
-    <content type="html">&lt;h2 id="git"&gt;gitの初期設定&lt;/h2&gt;
+    <content type="html">&lt;h2 id="gitの初期設定"&gt;gitの初期設定&lt;/h2&gt;
 
 &lt;p&gt;ターミナルを使ってsshでログインします。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-ssh username@ssh***.heteml.jp -p 2222
-&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ssh username@ssh***.heteml.jp -p 2222
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;2013/12/24現在gitのバージョンは1.7.3.4でした。&lt;/p&gt;
 
-&lt;p&gt;```
--bash-3.00$ pwd
-/home/sites/heteml/users***/u/s/e/username&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;-bash-3.00$ pwd
+/home/sites/heteml/users***/u/s/e/username
 
-&lt;p&gt;-bash-3.00$ git –version
+-bash-3.00$ git --version
 git version 1.7.3.4
-```&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;ログイン後、ユーザー名とメールアドレス等の設定をします。&lt;/p&gt;
 
-&lt;p&gt;```
-# ユーザー名とメールアドレスの設定
-git config –global user.email "username@example.com"&lt;br /&gt;
-git config –global user.name "username"&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# ユーザー名とメールアドレスの設定
+git config --global user.email &amp;quot;username@example.com&amp;quot;  
+git config --global user.name &amp;quot;username&amp;quot;
 
-&lt;h1 id="section"&gt;端末に色つきの文字を出力する&lt;/h1&gt;
-&lt;p&gt;git config –global color.ui auto
-```&lt;/p&gt;
+# 端末に色つきの文字を出力する
+git config --global color.ui auto
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;設定を確認します。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-git config --global --list
-&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git config --global --list
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id="heteml"&gt;heteml上にリポジトリを作成する&lt;/h2&gt;
+&lt;h2 id="heteml上にリポジトリを作成する"&gt;heteml上にリポジトリを作成する&lt;/h2&gt;
 
 &lt;p&gt;ディレクトリを作成して、移動します。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-mkdir myproject
+&lt;pre&gt;&lt;code&gt;mkdir myproject
 cd myproject
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;git init コマンドでリポジトリを作成します。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-git init
-&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git init
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;code&gt;
-Initialized empty Git repository in /home/sites/heteml/users***/u/s/e/username/myproject/.git/
-&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Initialized empty Git repository in /home/sites/heteml/users***/u/s/e/username/myproject/.git/
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;index.html を作成します。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-touch index.html
-&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;touch index.html
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;git status コマンドで変更内容を確認します。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-git status
-&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git status
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;コマンドを実行すると、以下のように表示されます。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-# On branch master
+&lt;pre&gt;&lt;code&gt;# On branch master
 #
 # Initial commit
 #
 # Untracked files:
-#   (use "git add &amp;lt;file&amp;gt;..." to include in what will be committed)
+#   (use &amp;quot;git add &amp;lt;file&amp;gt;...&amp;quot; to include in what will be committed)
 #
-#	index.html
-nothing added to commit but untracked files present (use "git add" to track)
-&lt;/code&gt;&lt;/p&gt;
+#   index.html
+nothing added to commit but untracked files present (use &amp;quot;git add&amp;quot; to track)
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;git add コマンドを実行します。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-git add index.html
-&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git add index.html
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;git add した後に git status コマンドを実行すると、以下のように表示されます。&lt;/p&gt;
 
-&lt;p&gt;```
-# On branch master
+&lt;pre&gt;&lt;code&gt;# On branch master
 #
 # Initial commit
 #
 # Changes to be committed:
-#   (use "git rm –cached &lt;file&gt;..." to unstage)
+#   (use &amp;quot;git rm --cached &amp;lt;file&amp;gt;...&amp;quot; to unstage)
 #
-#	new file:   index.html
-#&lt;/file&gt;&lt;/p&gt;
+#   new file:   index.html
+#
 
-&lt;p&gt;```&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;git commit コマンドでコミットします。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-git commit -m 'first commit'
-&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git commit -m &amp;#39;first commit&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;tig や git log で確認するとコミット履歴を見ることが出来ます。&lt;/p&gt;
 
-&lt;h2 id="hetemlpcpush"&gt;hetemlにリポジトリを作成してローカルPCからpushする&lt;/h2&gt;
+&lt;h2 id="hetemlにリポジトリを作成してローカルpcからpushする"&gt;hetemlにリポジトリを作成してローカルPCからpushする&lt;/h2&gt;
+
 &lt;p&gt;heteml に sshログインして、ディレクトリを作成します。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-mkdir repos
+&lt;pre&gt;&lt;code&gt;mkdir repos
 cd repos
 mkdir myproject.git
 cd myproject.git
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;git init コマンドでリポジトリを作成します。
 この時に &lt;code&gt;--bare&lt;/code&gt; オプションを指定すると変更のみを管理するリポジトリを作成することができます。
 また、 &lt;code&gt;--shared&lt;/code&gt; オプションを指定すると共同リポジトリとして作成することが出来ます。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-git init --bare --shared
-&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git init --bare --shared
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;ローカルPCでmyprojectのリポジトリを作成します。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-mkdir myproject
+&lt;pre&gt;&lt;code&gt;mkdir myproject
 cd myproject
 git init
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;hetemlに作成したリポジトリのURLを git remote コマンドで登録します。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-git remote add origin ssh://username@ssh***.heteml.jp:2222/home/sites/heteml/users***/u/s/e/username/repos/myproject.git
-&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git remote add origin ssh://username@ssh***.heteml.jp:2222/home/sites/heteml/users***/u/s/e/username/repos/myproject.git
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;git remote -v で登録情報を確認できます。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-git remote -v
-&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git remote -v
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;ファイルを作成します。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-touch a.txt
-&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;touch a.txt
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;add して commit します。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-git add .
-git commit -m 'inital import'
-&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git add .
+git commit -m &amp;#39;inital import&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;hetemlのリポジトリにpushして変更内容を反映させます。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-git push origin master
-&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git push origin master
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;sshログインのためのパスワードを聞かれるので、入力して下さい。&lt;/p&gt;
 
-&lt;h2 id="section-1"&gt;```&lt;/h2&gt;
-&lt;p&gt;–&lt;strong&gt;&lt;em&gt;——————————————-&lt;/em&gt;&lt;/strong&gt;–
-–&lt;strong&gt;&lt;em&gt;—————&lt;/em&gt;&lt;/strong&gt;————————-&lt;strong&gt;&lt;em&gt;–
-–&lt;/em&gt;&lt;/strong&gt;—————&lt;strong&gt;**&lt;/strong&gt;———————-&lt;strong&gt;&lt;em&gt;–
-–&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;**&lt;em&gt;-&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;**&lt;em&gt;-&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;&lt;em&gt;-&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;**&lt;em&gt;-&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;**&lt;/strong&gt;&lt;strong&gt;-&lt;/strong&gt;&lt;em&gt;–
-–&lt;/em&gt;&lt;strong&gt;**&lt;/strong&gt;&lt;em&gt;-&lt;/em&gt;&lt;strong&gt;–&lt;/strong&gt;&lt;em&gt;-&lt;/em&gt;&lt;strong&gt;—-&lt;/strong&gt;&lt;em&gt;–&lt;/em&gt;&lt;strong&gt;-&lt;/strong&gt;&lt;strong&gt;**&lt;/strong&gt;&lt;strong&gt;&lt;em&gt;-&lt;/em&gt;&lt;/strong&gt;–
-–&lt;strong&gt;&lt;em&gt;–&lt;/em&gt;&lt;/strong&gt;-&lt;strong&gt;**&lt;/strong&gt;&lt;strong&gt;-&lt;/strong&gt;&lt;em&gt;—-&lt;/em&gt;&lt;strong&gt;**&lt;/strong&gt;&lt;em&gt;-&lt;/em&gt;&lt;strong&gt;-&lt;/strong&gt;&lt;em&gt;-&lt;/em&gt;&lt;strong&gt;-&lt;/strong&gt;&lt;em&gt;–
-–&lt;/em&gt;&lt;strong&gt;–&lt;/strong&gt;&lt;em&gt;-&lt;/em&gt;&lt;strong&gt;——&lt;/strong&gt;&lt;strong&gt;**-&lt;/strong&gt;&lt;em&gt;——&lt;/em&gt;&lt;strong&gt;-&lt;/strong&gt;&lt;em&gt;-&lt;/em&gt;&lt;strong&gt;-&lt;/strong&gt;&lt;em&gt;–
-–&lt;/em&gt;&lt;strong&gt;–&lt;/strong&gt;&lt;em&gt;-&lt;/em&gt;&lt;strong&gt;**&lt;/strong&gt;&lt;em&gt;-&lt;/em&gt;&lt;strong&gt;**&lt;em&gt;-&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;**&lt;em&gt;-&lt;/em&gt;&lt;/strong&gt;-&lt;strong&gt;&lt;em&gt;-&lt;/em&gt;&lt;/strong&gt;-***–
-—————————————————–&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;-----------------------------------------------------
+--***-------------------------------------------***--
+--***---------------***-------------------------***--
+--***---------------******----------------------***--
+--********-********-******-********-***********-***--
+--********-***--***-***----***--***-***********-***--
+--***--***-********-***----********-***-***-***-***--
+--***--***-***------******-***------***-***-***-***--
+--***--***-********-******-********-***-***-***-***--
+-----------------------------------------------------
 
-&lt;p&gt;username@ssh***.heteml.jp's password:
-```&lt;/p&gt;
+username@ssh***.heteml.jp&amp;#39;s password:
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;パスワードを入力すると、以下のようにhetemlのリポジトリに変更内容が反映されます。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-Counting objects: 3, done.
+&lt;pre&gt;&lt;code&gt;Counting objects: 3, done.
 Writing objects: 100% (3/3), 215 bytes | 0 bytes/s, done.
 Total 3 (delta 0), reused 0 (delta 0)
 To ssh://kuro96@ssh160.heteml.jp:2222/home/sites/heteml/users160/k/u/r/kuro96/repos/myproject.git
  * [new branch]      master -&amp;gt; master
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;hetemlにsshログイン後、myproject.git に移動して、&lt;code&gt;git log -p&lt;/code&gt; コマンドで変更内容を確認します。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-cd repos/myproject.git
+&lt;pre&gt;&lt;code&gt;cd repos/myproject.git
 git log -p
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;以下のように変更が反映されていることを確認できます。&lt;/p&gt;
 
-&lt;p&gt;```
-commit 522111a8845c66aebb95de63bb6a65d405d33c2c
-Author: kurotaky &lt;a href="&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#117;&amp;#115;&amp;#101;&amp;#114;&amp;#110;&amp;#097;&amp;#109;&amp;#101;&amp;#064;&amp;#101;&amp;#120;&amp;#097;&amp;#109;&amp;#112;&amp;#108;&amp;#101;&amp;#046;&amp;#099;&amp;#111;&amp;#109;"&gt;&amp;#117;&amp;#115;&amp;#101;&amp;#114;&amp;#110;&amp;#097;&amp;#109;&amp;#101;&amp;#064;&amp;#101;&amp;#120;&amp;#097;&amp;#109;&amp;#112;&amp;#108;&amp;#101;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&lt;/a&gt;
-Date:   Tue Dec 24 09:43:43 2013 +0900&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;commit 522111a8845c66aebb95de63bb6a65d405d33c2c
+Author: kurotaky &amp;lt;username@example.com&amp;gt;
+Date:   Tue Dec 24 09:43:43 2013 +0900
 
-&lt;pre&gt;&lt;code&gt;inital import
-&lt;/code&gt;&lt;/pre&gt;
+    inital import
 
-&lt;p&gt;diff –git a/a.txt b/a.txt
+diff --git a/a.txt b/a.txt
 new file mode 100644
 index 0000000..e69de29
-```&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id="url"&gt;参考URL&lt;/h2&gt;
+&lt;h2 id="参考url"&gt;参考URL&lt;/h2&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;http://d.hatena.ne.jp/bannyan/20100308/1268066849&lt;/li&gt;
-  &lt;li&gt;http://git-scm.com/book/ja/Git-%E3%81%AE%E5%9F%BA%E6%9C%AC-Git-%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%81%AE%E5%8F%96%E5%BE%97&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://d.hatena.ne.jp/bannyan/20100308/1268066849"&gt;http://d.hatena.ne.jp/bannyan/20100308/1268066849&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://git-scm.com/book/ja/Git-%E3%81%AE%E5%9F%BA%E6%9C%AC-Git-%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%81%AE%E5%8F%96%E5%BE%97"&gt;http://git-scm.com/book/ja/Git-%E3%81%AE%E5%9F%BA%E6%9C%AC-Git-%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%81%AE%E5%8F%96%E5%BE%97&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id="section-2"&gt;参考文献&lt;/h2&gt;
+&lt;h2 id="参考文献"&gt;参考文献&lt;/h2&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;http://www.amazon.co.jp/dp/4274068641&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.amazon.co.jp/dp/4274068641"&gt;http://www.amazon.co.jp/dp/4274068641&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </content>
   </entry>
@@ -370,7 +343,7 @@ index 0000000..e69de29
     <author>
       <name>Article Author</name>
     </author>
-    <content type="html">&lt;h3 id="section"&gt;プライベートメソッドのテスト書いてて思ったことの記録&lt;/h3&gt;
+    <content type="html">&lt;h3 id="プライベートメソッドのテスト書いてて思ったことの記録"&gt;プライベートメソッドのテスト書いてて思ったことの記録&lt;/h3&gt;
 
 &lt;p&gt;とあるプロダクトで、APIにRequestを送る部分のテストを書いている時に、
 private メソッドをテストしようとしたところ、むむ、テストできないぞ！
@@ -407,9 +380,10 @@ privateなメソッドのテストを書くことは、リファクタリング�
 &lt;p&gt;納期と自分の技術と要相談ですが、RED → GREEN → リファクタリングを繰り返して、
 privateメソッドのテストを消せた時には良い設計に近づいているはず！&lt;/p&gt;
 
-&lt;h3 id="section-1"&gt;参考&lt;/h3&gt;
-&lt;p&gt;プライベートメソッドのユニットテストは書かないもの？&lt;br /&gt;
-http://qa.atmarkit.co.jp/q/2784&lt;/p&gt;
+&lt;h3 id="参考"&gt;参考&lt;/h3&gt;
+
+&lt;p&gt;プライベートメソッドのユニットテストは書かないもの？&lt;br&gt;
+&lt;a href="http://qa.atmarkit.co.jp/q/2784"&gt;http://qa.atmarkit.co.jp/q/2784&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;privateメソッドのテストについて気になったので読んでみた。勉強になる！&lt;/p&gt;
 </content>
@@ -423,19 +397,20 @@ http://qa.atmarkit.co.jp/q/2784&lt;/p&gt;
     <author>
       <name>Article Author</name>
     </author>
-    <content type="html">&lt;p&gt;Vim7.4 が出ているのでインストールしました。&lt;br /&gt;
-http://vim-jp.org/blog/2013/08/10/vim_7.4_released.html&lt;/p&gt;
+    <content type="html">&lt;p&gt;Vim7.4 が出ているのでインストールしました。&lt;br&gt;
+&lt;a href="http://vim-jp.org/blog/2013/08/10/vim_7.4_released.html"&gt;http://vim-jp.org/blog/2013/08/10/vim_7.4_released.html&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id="macvim74"&gt;macにVim7.4をインストールする。&lt;/h3&gt;
-&lt;p&gt;MacVim-KaoriYa を使う場合、ダウンロードはこちらから。&lt;br /&gt;
-https://code.google.com/p/macvim-kaoriya/downloads/list&lt;/p&gt;
+&lt;h3 id="macにvim7.4をインストールする。"&gt;macにVim7.4をインストールする。&lt;/h3&gt;
+
+&lt;p&gt;MacVim-KaoriYa を使う場合、ダウンロードはこちらから。&lt;br&gt;
+&lt;a href="https://code.google.com/p/macvim-kaoriya/downloads/list"&gt;https://code.google.com/p/macvim-kaoriya/downloads/list&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;インストール後、Launchpad のMacVim アイコンをクリックすれば、
 アプリケーションが起動されます。&lt;/p&gt;
 
 &lt;p&gt;コンソールで &lt;code&gt;vim&lt;/code&gt; を使いたい場合は、alias でパスを指定する。
-自分はzsh を使っているので、 &lt;code&gt;.zshrc&lt;/code&gt; に以下のような設定を追記する。&lt;br /&gt;
-&lt;code&gt;alias -g vim='/Applications/MacVim.app/Contents/MacOS/vim'&lt;/code&gt;&lt;/p&gt;
+自分はzsh を使っているので、 &lt;code&gt;.zshrc&lt;/code&gt; に以下のような設定を追記する。&lt;br&gt;
+&lt;code&gt;alias -g vim=&amp;#39;/Applications/MacVim.app/Contents/MacOS/vim&amp;#39;&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;コンソールで &lt;code&gt;source ~/.zshrc&lt;/code&gt; を入力して、変更を反映させる。&lt;/p&gt;
 
