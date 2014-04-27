@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <title>Blog Title - プライベートメソッドのテストについて</title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+  </head>
+  <body>
+    
+    <div id="main" role="main">
+      <h3 id="section">プライベートメソッドのテスト書いてて思ったことの記録</h3>
+
+<p>とあるプロダクトで、APIにRequestを送る部分のテストを書いている時に、
+private メソッドをテストしようとしたところ、むむ、テストできないぞ！
+となりました。</p>
+
+<p>protected なメソッドならテストできるけど、privateなメソッドだとテストできない！となって
+ReflectionMethod を使用しようとしたらPHP5.3からなのでだめでした。
+(テストを書いているプロダクトコードはPHP5.1系を使っている)</p>
+
+<p>メソッドのスコープをprotected(もしくはfinal protected)にするしかないのか。。</p>
+
+<p>と思った時に、そもそもprivate なメソッドってテストするべきものではない!?
+というふうに思ってきて、外からアクセスできるpublic なメソッドを通してテストするようにしないと
+いけないのでは？ということを周りの開発メンバーに話して色々考えた。</p>
+
+<p>public メソッドを通してprivateなメソッドもテストができているなら、
+privateメソッドのテストは書かなくて良いという話になってしまうのですが、
+privateメソッドの中でif文とかで条件分岐があった時に、
+その条件分岐の部分もテストできているか?みたいなことを考慮しないといけない。</p>
+
+<p>publicなメソッドのテストを通そうとするのが難しい時はprivateのテストも書いて、
+まずは落ちるテストを書いて、テストが通るように修正する事からはじめることにしました。
+（RED → GREEN → リファクタリング のサイクル！）</p>
+
+<p>そして、メソッドを分割したり、他のクラスに移動したりとかリファクタリングしていく中で、
+最終的にprivateメソッドのテストが必要無くなったら、それまでに使っていたprivateメソッドのテストは消せば良い。
+という自分の中でのとりあえずの答えです。</p>
+
+<p>今、自分がテストを書いている状況はプロダクトコードが自分で書いた状態ではなく、
+テストコードがないという状況だったので、テストを書くことは仕様を書いていく意味も含んでいると思い、
+privateなメソッドのテストを書くことは、リファクタリングのはじめの一歩としては良いと考え、
+書くことにしました。</p>
+
+<p>納期と自分の技術と要相談ですが、RED → GREEN → リファクタリングを繰り返して、
+privateメソッドのテストを消せた時には良い設計に近づいているはず！</p>
+
+<h3 id="section-1">参考</h3>
+<p>プライベートメソッドのユニットテストは書かないもの？<br />
+http://qa.atmarkit.co.jp/q/2784</p>
+
+<p>privateメソッドのテストについて気になったので読んでみた。勉強になる！</p>
+
+    </div>
+    
+    <aside>
+      <h2>Recent Articles</h2>
+      <ol>
+          <li><a href="/2014/01/09/install-ggplot2.html">ggplot2をインストールして使うまで</a> <span>Jan  9</span></li>
+          <li><a href="/2014/01/05/backup-to-amazon-s3.html">SqaleからAmazonS3にDBをバックアップする</a> <span>Jan  5</span></li>
+          <li><a href="/2013/12/24/how-to-use-git-on-heteml.html">hetemlレンタルサーバーでgitを使う</a> <span>Dec 24</span></li>
+          <li><a href="/2013/11/18/about-testing-for-private-method.html">プライベートメソッドのテストについて</a> <span>Nov 18</span></li>
+          <li><a href="/2013/09/29/install-mac-vim74.html">install-mac-vim74</a> <span>Sep 29</span></li>
+          <li><a href="/2013/09/15/i-change-my-blog-name.html">Change my blog's url</a> <span>Sep 15</span></li>
+          <li><a href="/2012/12/24/fuelphp-advent-calendar-2012.html">FuelPHPで簡単なWebアプリケーションを作ってみる</a> <span>Dec 24</span></li>
+          <li><a href="/2012/11/19/startup-rails4.html">rails4(edge)を動かしてみた。</a> <span>Nov 19</span></li>
+          <li><a href="/2012/11/16/ppb-lightningtalk-2.html">社内LT大会第二回</a> <span>Nov 16</span></li>
+          <li><a href="/2012/11/01/nebel-siteでブログはじめました.html">nebelでブログはじめました</a> <span>Nov  1</span></li>
+      </ol>
+
+      <h2>Tags</h2>
+      <ol>
+      </ol>
+
+      <h2>By Year</h2>
+      <ol>
+          <li><a href="/2014.html">2014 (2)</a></li>
+          <li><a href="/2013.html">2013 (4)</a></li>
+          <li><a href="/2012.html">2012 (4)</a></li>
+      </ol>
+    </aside>
+  </body>
+</html>
