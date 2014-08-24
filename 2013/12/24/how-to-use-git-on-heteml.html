@@ -15,53 +15,53 @@
       <h2 id="gitの初期設定">gitの初期設定</h2>
 
 <p>ターミナルを使ってsshでログインします。</p>
-<pre class="highlight plaintext">ssh username@ssh***.heteml.jp -p 2222
-</pre>
+<pre><code class="highlight plaintext">ssh username@ssh***.heteml.jp -p 2222
+</code></pre>
 
 <p>2013/12/24現在gitのバージョンは1.7.3.4でした。</p>
-<pre class="highlight plaintext">-bash-3.00$ pwd
+<pre><code class="highlight plaintext">-bash-3.00$ pwd
 /home/sites/heteml/users***/u/s/e/username
 
 -bash-3.00$ git --version
 git version 1.7.3.4
-</pre>
+</code></pre>
 
 <p>ログイン後、ユーザー名とメールアドレス等の設定をします。</p>
-<pre class="highlight plaintext"># ユーザー名とメールアドレスの設定
+<pre><code class="highlight plaintext"># ユーザー名とメールアドレスの設定
 git config --global user.email "username@example.com"  
 git config --global user.name "username"
 
 # 端末に色つきの文字を出力する
 git config --global color.ui auto
-</pre>
+</code></pre>
 
 <p>設定を確認します。</p>
-<pre class="highlight plaintext">git config --global --list
-</pre>
+<pre><code class="highlight plaintext">git config --global --list
+</code></pre>
 
 <h2 id="heteml上にリポジトリを作成する">heteml上にリポジトリを作成する</h2>
 
 <p>ディレクトリを作成して、移動します。</p>
-<pre class="highlight plaintext">mkdir myproject
+<pre><code class="highlight plaintext">mkdir myproject
 cd myproject
-</pre>
+</code></pre>
 
 <p>git init コマンドでリポジトリを作成します。</p>
-<pre class="highlight plaintext">git init
-</pre>
-<pre class="highlight plaintext">Initialized empty Git repository in /home/sites/heteml/users***/u/s/e/username/myproject/.git/
-</pre>
+<pre><code class="highlight plaintext">git init
+</code></pre>
+<pre><code class="highlight plaintext">Initialized empty Git repository in /home/sites/heteml/users***/u/s/e/username/myproject/.git/
+</code></pre>
 
 <p>index.html を作成します。</p>
-<pre class="highlight plaintext">touch index.html
-</pre>
+<pre><code class="highlight plaintext">touch index.html
+</code></pre>
 
 <p>git status コマンドで変更内容を確認します。</p>
-<pre class="highlight plaintext">git status
-</pre>
+<pre><code class="highlight plaintext">git status
+</code></pre>
 
 <p>コマンドを実行すると、以下のように表示されます。</p>
-<pre class="highlight plaintext"># On branch master
+<pre><code class="highlight plaintext"># On branch master
 #
 # Initial commit
 #
@@ -70,14 +70,14 @@ cd myproject
 #
 #   index.html
 nothing added to commit but untracked files present (use "git add" to track)
-</pre>
+</code></pre>
 
 <p>git add コマンドを実行します。</p>
-<pre class="highlight plaintext">git add index.html
-</pre>
+<pre><code class="highlight plaintext">git add index.html
+</code></pre>
 
 <p>git add した後に git status コマンドを実行すると、以下のように表示されます。</p>
-<pre class="highlight plaintext"># On branch master
+<pre><code class="highlight plaintext"># On branch master
 #
 # Initial commit
 #
@@ -87,58 +87,58 @@ nothing added to commit but untracked files present (use "git add" to track)
 #   new file:   index.html
 #
 
-</pre>
+</code></pre>
 
 <p>git commit コマンドでコミットします。</p>
-<pre class="highlight plaintext">git commit -m 'first commit'
-</pre>
+<pre><code class="highlight plaintext">git commit -m 'first commit'
+</code></pre>
 
 <p>tig や git log で確認するとコミット履歴を見ることが出来ます。</p>
 
 <h2 id="hetemlにリポジトリを作成してローカルpcからpushする">hetemlにリポジトリを作成してローカルPCからpushする</h2>
 
 <p>heteml に sshログインして、ディレクトリを作成します。</p>
-<pre class="highlight plaintext">mkdir repos
+<pre><code class="highlight plaintext">mkdir repos
 cd repos
 mkdir myproject.git
 cd myproject.git
-</pre>
+</code></pre>
 
 <p>git init コマンドでリポジトリを作成します。
 この時に <code>--bare</code> オプションを指定すると変更のみを管理するリポジトリを作成することができます。
 また、 <code>--shared</code> オプションを指定すると共同リポジトリとして作成することが出来ます。</p>
-<pre class="highlight plaintext">git init --bare --shared
-</pre>
+<pre><code class="highlight plaintext">git init --bare --shared
+</code></pre>
 
 <p>ローカルPCでmyprojectのリポジトリを作成します。</p>
-<pre class="highlight plaintext">mkdir myproject
+<pre><code class="highlight plaintext">mkdir myproject
 cd myproject
 git init
-</pre>
+</code></pre>
 
 <p>hetemlに作成したリポジトリのURLを git remote コマンドで登録します。</p>
-<pre class="highlight plaintext">git remote add origin ssh://username@ssh***.heteml.jp:2222/home/sites/heteml/users***/u/s/e/username/repos/myproject.git
-</pre>
+<pre><code class="highlight plaintext">git remote add origin ssh://username@ssh***.heteml.jp:2222/home/sites/heteml/users***/u/s/e/username/repos/myproject.git
+</code></pre>
 
 <p>git remote -v で登録情報を確認できます。</p>
-<pre class="highlight plaintext">git remote -v
-</pre>
+<pre><code class="highlight plaintext">git remote -v
+</code></pre>
 
 <p>ファイルを作成します。</p>
-<pre class="highlight plaintext">touch a.txt
-</pre>
+<pre><code class="highlight plaintext">touch a.txt
+</code></pre>
 
 <p>add して commit します。</p>
-<pre class="highlight plaintext">git add .
+<pre><code class="highlight plaintext">git add .
 git commit -m 'inital import'
-</pre>
+</code></pre>
 
 <p>hetemlのリポジトリにpushして変更内容を反映させます。</p>
-<pre class="highlight plaintext">git push origin master
-</pre>
+<pre><code class="highlight plaintext">git push origin master
+</code></pre>
 
 <p>sshログインのためのパスワードを聞かれるので、入力して下さい。</p>
-<pre class="highlight plaintext">-----------------------------------------------------
+<pre><code class="highlight plaintext">-----------------------------------------------------
 --***-------------------------------------------***--
 --***---------------***-------------------------***--
 --***---------------******----------------------***--
@@ -150,23 +150,23 @@ git commit -m 'inital import'
 -----------------------------------------------------
 
 username@ssh***.heteml.jp's password:
-</pre>
+</code></pre>
 
 <p>パスワードを入力すると、以下のようにhetemlのリポジトリに変更内容が反映されます。</p>
-<pre class="highlight plaintext">Counting objects: 3, done.
+<pre><code class="highlight plaintext">Counting objects: 3, done.
 Writing objects: 100% (3/3), 215 bytes | 0 bytes/s, done.
 Total 3 (delta 0), reused 0 (delta 0)
 To ssh://kuro96@ssh160.heteml.jp:2222/home/sites/heteml/users160/k/u/r/kuro96/repos/myproject.git
  * [new branch]      master -&gt; master
-</pre>
+</code></pre>
 
 <p>hetemlにsshログイン後、myproject.git に移動して、<code>git log -p</code> コマンドで変更内容を確認します。</p>
-<pre class="highlight plaintext">cd repos/myproject.git
+<pre><code class="highlight plaintext">cd repos/myproject.git
 git log -p
-</pre>
+</code></pre>
 
 <p>以下のように変更が反映されていることを確認できます。</p>
-<pre class="highlight plaintext">commit 522111a8845c66aebb95de63bb6a65d405d33c2c
+<pre><code class="highlight plaintext">commit 522111a8845c66aebb95de63bb6a65d405d33c2c
 Author: kurotaky &lt;username@example.com&gt;
 Date:   Tue Dec 24 09:43:43 2013 +0900
 
@@ -175,7 +175,7 @@ Date:   Tue Dec 24 09:43:43 2013 +0900
 diff --git a/a.txt b/a.txt
 new file mode 100644
 index 0000000..e69de29
-</pre>
+</code></pre>
 
 <h2 id="参考url">参考URL</h2>
 

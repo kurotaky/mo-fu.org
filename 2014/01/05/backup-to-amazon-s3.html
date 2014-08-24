@@ -29,41 +29,41 @@ Security Credentials を選択、Access Keys をクリックするとAccess Key 
 <h2 id="s3にバケット作成する">S3にバケット作成する</h2>
 
 <p>gateway.sqale.jp にsshログイン。</p>
-<pre class="highlight plaintext">ssh gateway.sqale.jp -p 2222
-</pre>
+<pre><code class="highlight plaintext">ssh gateway.sqale.jp -p 2222
+</code></pre>
 
 <p>以下のコマンドを入力したあと、AWSのアクセスキーとシークレットキー入力します。</p>
-<pre class="highlight plaintext">s3cmd --configure
+<pre><code class="highlight plaintext">s3cmd --configure
 
-</pre>
+</code></pre>
 
 <p><code>s3cmd mb</code> コマンドでS3にバケットを作成します。</p>
-<pre class="highlight plaintext">s3cmd mb s3://sampleapp-backup
-</pre>
+<pre><code class="highlight plaintext">s3cmd mb s3://sampleapp-backup
+</code></pre>
 
 <p>以下のようにメッセージが出力されれば、バケットの作成が完了です。</p>
-<pre class="highlight plaintext">Bucket 's3://sampleapp-backup/' created
-</pre>
+<pre><code class="highlight plaintext">Bucket 's3://sampleapp-backup/' created
+</code></pre>
 
 <h2 id="s3にdumpファイルをアップロードする">S3にdumpファイルをアップロードする</h2>
 
 <p><code>s3cmd put</code> コマンドでdumpファイルをアップロードします。</p>
-<pre class="highlight plaintext">s3cmd put 20140105-sampleapp-mysql.dump s3://sampleapp-backup/20140105-sampleapp-mysql.dump
-</pre>
+<pre><code class="highlight plaintext">s3cmd put 20140105-sampleapp-mysql.dump s3://sampleapp-backup/20140105-sampleapp-mysql.dump
+</code></pre>
 
 <h2 id="定期的にdumpファイルをs3に保存する">定期的にdumpファイルをS3に保存する</h2>
 
 <p>以下のようにrake task を作成してcronで設定すれば、
 定期的にdumpファイルを保存することができます。</p>
-<pre class="highlight ruby"><span class="n">namespace</span> <span class="ss">:db</span> <span class="k">do</span>
+<pre><code class="highlight ruby"><span class="n">namespace</span> <span class="ss">:db</span> <span class="k">do</span>
   <span class="n">desc</span> <span class="s2">"mysql dump: db backup to Amazon S3"</span>
 
   <span class="n">task</span> <span class="ss">:backup</span> <span class="o">=&gt;</span> <span class="ss">:environment</span> <span class="k">do</span>
-    <span class="nb">system</span> <span class="s2">"mysqldump -u </span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s1">'SQALE_USERNAME'</span><span class="o">]</span><span class="si">}</span><span class="s2"> -h </span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s1">'SQALE_HOST'</span><span class="o">]</span><span class="si">}</span><span class="s2"> -p </span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s1">'SQALE_DATABASE'</span><span class="o">]</span><span class="si">}</span><span class="s2"> --password=</span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s1">'SQALE_PASSWORD'</span><span class="o">]</span><span class="si">}</span><span class="s2"> &gt; ../tmp/</span><span class="si">#{</span><span class="no">Time</span><span class="p">.</span><span class="nf">now</span><span class="p">.</span><span class="nf">strftime</span><span class="p">(</span><span class="s1">'%Y%m%d'</span><span class="p">)</span><span class="si">}</span><span class="s2">-sampleapp-mysql.dump"</span>
+    <span class="nb">system</span> <span class="s2">"mysqldump -u </span><span class="si">#{</span><span class="no">ENV</span><span class="p">[</span><span class="s1">'SQALE_USERNAME'</span><span class="p">]</span><span class="si">}</span><span class="s2"> -h </span><span class="si">#{</span><span class="no">ENV</span><span class="p">[</span><span class="s1">'SQALE_HOST'</span><span class="p">]</span><span class="si">}</span><span class="s2"> -p </span><span class="si">#{</span><span class="no">ENV</span><span class="p">[</span><span class="s1">'SQALE_DATABASE'</span><span class="p">]</span><span class="si">}</span><span class="s2"> --password=</span><span class="si">#{</span><span class="no">ENV</span><span class="p">[</span><span class="s1">'SQALE_PASSWORD'</span><span class="p">]</span><span class="si">}</span><span class="s2"> &gt; ../tmp/</span><span class="si">#{</span><span class="no">Time</span><span class="p">.</span><span class="nf">now</span><span class="p">.</span><span class="nf">strftime</span><span class="p">(</span><span class="s1">'%Y%m%d'</span><span class="p">)</span><span class="si">}</span><span class="s2">-sampleapp-mysql.dump"</span>
     <span class="nb">system</span> <span class="s2">"s3cmd put ../tmp/</span><span class="si">#{</span><span class="no">Time</span><span class="p">.</span><span class="nf">now</span><span class="p">.</span><span class="nf">strftime</span><span class="p">(</span><span class="s1">'%Y%m%d'</span><span class="p">)</span><span class="si">}</span><span class="s2">-sampleapp-mysql.dump s3://sampleapp-backup/</span><span class="si">#{</span><span class="no">Time</span><span class="p">.</span><span class="nf">now</span><span class="p">.</span><span class="nf">year</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="no">Time</span><span class="p">.</span><span class="nf">now</span><span class="p">.</span><span class="nf">month</span><span class="si">}</span><span class="s2">/"</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</pre>
+</code></pre>
 
 <h2 id="参考url">参考URL</h2>
 

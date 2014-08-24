@@ -19,12 +19,12 @@
   <h2 id="インストール">インストール</h2>
 
 <p>Rコンソールを開いて以下のコマンドを入力する。</p>
-<pre class="highlight plaintext">install.packages("ggplot2")
+<pre><code class="highlight plaintext">install.packages("ggplot2")
 
-</pre>
+</code></pre>
 
 <h2 id="グラフを出力する">グラフを出力する</h2>
-<pre class="highlight plaintext">&gt; library(ggplot2)
+<pre><code class="highlight plaintext">&gt; library(ggplot2)
 &gt; data &lt;- read.csv("/Users/yuta/201401-lines-of-code.csv")
 &gt; data
   day lines
@@ -38,7 +38,7 @@
 8   8   206
 &gt; ggplot(data, aes(x=day, y=lines)) + geom_line() + geom_point()
 
-</pre>
+</code></pre>
 
   <h2><a href="/2014/01/05/backup-to-amazon-s3.html">SqaleからAmazonS3にDBをバックアップする</a> <span>Jan  5</span></h2>
   <!-- use article.summary(250) if you have Nokogiri available to show just
@@ -60,41 +60,41 @@ Security Credentials を選択、Access Keys をクリックするとAccess Key 
 <h2 id="s3にバケット作成する">S3にバケット作成する</h2>
 
 <p>gateway.sqale.jp にsshログイン。</p>
-<pre class="highlight plaintext">ssh gateway.sqale.jp -p 2222
-</pre>
+<pre><code class="highlight plaintext">ssh gateway.sqale.jp -p 2222
+</code></pre>
 
 <p>以下のコマンドを入力したあと、AWSのアクセスキーとシークレットキー入力します。</p>
-<pre class="highlight plaintext">s3cmd --configure
+<pre><code class="highlight plaintext">s3cmd --configure
 
-</pre>
+</code></pre>
 
 <p><code>s3cmd mb</code> コマンドでS3にバケットを作成します。</p>
-<pre class="highlight plaintext">s3cmd mb s3://sampleapp-backup
-</pre>
+<pre><code class="highlight plaintext">s3cmd mb s3://sampleapp-backup
+</code></pre>
 
 <p>以下のようにメッセージが出力されれば、バケットの作成が完了です。</p>
-<pre class="highlight plaintext">Bucket 's3://sampleapp-backup/' created
-</pre>
+<pre><code class="highlight plaintext">Bucket 's3://sampleapp-backup/' created
+</code></pre>
 
 <h2 id="s3にdumpファイルをアップロードする">S3にdumpファイルをアップロードする</h2>
 
 <p><code>s3cmd put</code> コマンドでdumpファイルをアップロードします。</p>
-<pre class="highlight plaintext">s3cmd put 20140105-sampleapp-mysql.dump s3://sampleapp-backup/20140105-sampleapp-mysql.dump
-</pre>
+<pre><code class="highlight plaintext">s3cmd put 20140105-sampleapp-mysql.dump s3://sampleapp-backup/20140105-sampleapp-mysql.dump
+</code></pre>
 
 <h2 id="定期的にdumpファイルをs3に保存する">定期的にdumpファイルをS3に保存する</h2>
 
 <p>以下のようにrake task を作成してcronで設定すれば、
 定期的にdumpファイルを保存することができます。</p>
-<pre class="highlight ruby"><span class="n">namespace</span> <span class="ss">:db</span> <span class="k">do</span>
+<pre><code class="highlight ruby"><span class="n">namespace</span> <span class="ss">:db</span> <span class="k">do</span>
   <span class="n">desc</span> <span class="s2">"mysql dump: db backup to Amazon S3"</span>
 
   <span class="n">task</span> <span class="ss">:backup</span> <span class="o">=&gt;</span> <span class="ss">:environment</span> <span class="k">do</span>
-    <span class="nb">system</span> <span class="s2">"mysqldump -u </span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s1">'SQALE_USERNAME'</span><span class="o">]</span><span class="si">}</span><span class="s2"> -h </span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s1">'SQALE_HOST'</span><span class="o">]</span><span class="si">}</span><span class="s2"> -p </span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s1">'SQALE_DATABASE'</span><span class="o">]</span><span class="si">}</span><span class="s2"> --password=</span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s1">'SQALE_PASSWORD'</span><span class="o">]</span><span class="si">}</span><span class="s2"> &gt; ../tmp/</span><span class="si">#{</span><span class="no">Time</span><span class="p">.</span><span class="nf">now</span><span class="p">.</span><span class="nf">strftime</span><span class="p">(</span><span class="s1">'%Y%m%d'</span><span class="p">)</span><span class="si">}</span><span class="s2">-sampleapp-mysql.dump"</span>
+    <span class="nb">system</span> <span class="s2">"mysqldump -u </span><span class="si">#{</span><span class="no">ENV</span><span class="p">[</span><span class="s1">'SQALE_USERNAME'</span><span class="p">]</span><span class="si">}</span><span class="s2"> -h </span><span class="si">#{</span><span class="no">ENV</span><span class="p">[</span><span class="s1">'SQALE_HOST'</span><span class="p">]</span><span class="si">}</span><span class="s2"> -p </span><span class="si">#{</span><span class="no">ENV</span><span class="p">[</span><span class="s1">'SQALE_DATABASE'</span><span class="p">]</span><span class="si">}</span><span class="s2"> --password=</span><span class="si">#{</span><span class="no">ENV</span><span class="p">[</span><span class="s1">'SQALE_PASSWORD'</span><span class="p">]</span><span class="si">}</span><span class="s2"> &gt; ../tmp/</span><span class="si">#{</span><span class="no">Time</span><span class="p">.</span><span class="nf">now</span><span class="p">.</span><span class="nf">strftime</span><span class="p">(</span><span class="s1">'%Y%m%d'</span><span class="p">)</span><span class="si">}</span><span class="s2">-sampleapp-mysql.dump"</span>
     <span class="nb">system</span> <span class="s2">"s3cmd put ../tmp/</span><span class="si">#{</span><span class="no">Time</span><span class="p">.</span><span class="nf">now</span><span class="p">.</span><span class="nf">strftime</span><span class="p">(</span><span class="s1">'%Y%m%d'</span><span class="p">)</span><span class="si">}</span><span class="s2">-sampleapp-mysql.dump s3://sampleapp-backup/</span><span class="si">#{</span><span class="no">Time</span><span class="p">.</span><span class="nf">now</span><span class="p">.</span><span class="nf">year</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="no">Time</span><span class="p">.</span><span class="nf">now</span><span class="p">.</span><span class="nf">month</span><span class="si">}</span><span class="s2">/"</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</pre>
+</code></pre>
 
 <h2 id="参考url">参考URL</h2>
 
@@ -109,53 +109,53 @@ Security Credentials を選択、Access Keys をクリックするとAccess Key 
   <h2 id="gitの初期設定">gitの初期設定</h2>
 
 <p>ターミナルを使ってsshでログインします。</p>
-<pre class="highlight plaintext">ssh username@ssh***.heteml.jp -p 2222
-</pre>
+<pre><code class="highlight plaintext">ssh username@ssh***.heteml.jp -p 2222
+</code></pre>
 
 <p>2013/12/24現在gitのバージョンは1.7.3.4でした。</p>
-<pre class="highlight plaintext">-bash-3.00$ pwd
+<pre><code class="highlight plaintext">-bash-3.00$ pwd
 /home/sites/heteml/users***/u/s/e/username
 
 -bash-3.00$ git --version
 git version 1.7.3.4
-</pre>
+</code></pre>
 
 <p>ログイン後、ユーザー名とメールアドレス等の設定をします。</p>
-<pre class="highlight plaintext"># ユーザー名とメールアドレスの設定
+<pre><code class="highlight plaintext"># ユーザー名とメールアドレスの設定
 git config --global user.email "username@example.com"  
 git config --global user.name "username"
 
 # 端末に色つきの文字を出力する
 git config --global color.ui auto
-</pre>
+</code></pre>
 
 <p>設定を確認します。</p>
-<pre class="highlight plaintext">git config --global --list
-</pre>
+<pre><code class="highlight plaintext">git config --global --list
+</code></pre>
 
 <h2 id="heteml上にリポジトリを作成する">heteml上にリポジトリを作成する</h2>
 
 <p>ディレクトリを作成して、移動します。</p>
-<pre class="highlight plaintext">mkdir myproject
+<pre><code class="highlight plaintext">mkdir myproject
 cd myproject
-</pre>
+</code></pre>
 
 <p>git init コマンドでリポジトリを作成します。</p>
-<pre class="highlight plaintext">git init
-</pre>
-<pre class="highlight plaintext">Initialized empty Git repository in /home/sites/heteml/users***/u/s/e/username/myproject/.git/
-</pre>
+<pre><code class="highlight plaintext">git init
+</code></pre>
+<pre><code class="highlight plaintext">Initialized empty Git repository in /home/sites/heteml/users***/u/s/e/username/myproject/.git/
+</code></pre>
 
 <p>index.html を作成します。</p>
-<pre class="highlight plaintext">touch index.html
-</pre>
+<pre><code class="highlight plaintext">touch index.html
+</code></pre>
 
 <p>git status コマンドで変更内容を確認します。</p>
-<pre class="highlight plaintext">git status
-</pre>
+<pre><code class="highlight plaintext">git status
+</code></pre>
 
 <p>コマンドを実行すると、以下のように表示されます。</p>
-<pre class="highlight plaintext"># On branch master
+<pre><code class="highlight plaintext"># On branch master
 #
 # Initial commit
 #
@@ -164,14 +164,14 @@ cd myproject
 #
 #   index.html
 nothing added to commit but untracked files present (use "git add" to track)
-</pre>
+</code></pre>
 
 <p>git add コマンドを実行します。</p>
-<pre class="highlight plaintext">git add index.html
-</pre>
+<pre><code class="highlight plaintext">git add index.html
+</code></pre>
 
 <p>git add した後に git status コマンドを実行すると、以下のように表示されます。</p>
-<pre class="highlight plaintext"># On branch master
+<pre><code class="highlight plaintext"># On branch master
 #
 # Initial commit
 #
@@ -181,58 +181,58 @@ nothing added to commit but untracked files present (use "git add" to track)
 #   new file:   index.html
 #
 
-</pre>
+</code></pre>
 
 <p>git commit コマンドでコミットします。</p>
-<pre class="highlight plaintext">git commit -m 'first commit'
-</pre>
+<pre><code class="highlight plaintext">git commit -m 'first commit'
+</code></pre>
 
 <p>tig や git log で確認するとコミット履歴を見ることが出来ます。</p>
 
 <h2 id="hetemlにリポジトリを作成してローカルpcからpushする">hetemlにリポジトリを作成してローカルPCからpushする</h2>
 
 <p>heteml に sshログインして、ディレクトリを作成します。</p>
-<pre class="highlight plaintext">mkdir repos
+<pre><code class="highlight plaintext">mkdir repos
 cd repos
 mkdir myproject.git
 cd myproject.git
-</pre>
+</code></pre>
 
 <p>git init コマンドでリポジトリを作成します。
 この時に <code>--bare</code> オプションを指定すると変更のみを管理するリポジトリを作成することができます。
 また、 <code>--shared</code> オプションを指定すると共同リポジトリとして作成することが出来ます。</p>
-<pre class="highlight plaintext">git init --bare --shared
-</pre>
+<pre><code class="highlight plaintext">git init --bare --shared
+</code></pre>
 
 <p>ローカルPCでmyprojectのリポジトリを作成します。</p>
-<pre class="highlight plaintext">mkdir myproject
+<pre><code class="highlight plaintext">mkdir myproject
 cd myproject
 git init
-</pre>
+</code></pre>
 
 <p>hetemlに作成したリポジトリのURLを git remote コマンドで登録します。</p>
-<pre class="highlight plaintext">git remote add origin ssh://username@ssh***.heteml.jp:2222/home/sites/heteml/users***/u/s/e/username/repos/myproject.git
-</pre>
+<pre><code class="highlight plaintext">git remote add origin ssh://username@ssh***.heteml.jp:2222/home/sites/heteml/users***/u/s/e/username/repos/myproject.git
+</code></pre>
 
 <p>git remote -v で登録情報を確認できます。</p>
-<pre class="highlight plaintext">git remote -v
-</pre>
+<pre><code class="highlight plaintext">git remote -v
+</code></pre>
 
 <p>ファイルを作成します。</p>
-<pre class="highlight plaintext">touch a.txt
-</pre>
+<pre><code class="highlight plaintext">touch a.txt
+</code></pre>
 
 <p>add して commit します。</p>
-<pre class="highlight plaintext">git add .
+<pre><code class="highlight plaintext">git add .
 git commit -m 'inital import'
-</pre>
+</code></pre>
 
 <p>hetemlのリポジトリにpushして変更内容を反映させます。</p>
-<pre class="highlight plaintext">git push origin master
-</pre>
+<pre><code class="highlight plaintext">git push origin master
+</code></pre>
 
 <p>sshログインのためのパスワードを聞かれるので、入力して下さい。</p>
-<pre class="highlight plaintext">-----------------------------------------------------
+<pre><code class="highlight plaintext">-----------------------------------------------------
 --***-------------------------------------------***--
 --***---------------***-------------------------***--
 --***---------------******----------------------***--
@@ -244,23 +244,23 @@ git commit -m 'inital import'
 -----------------------------------------------------
 
 username@ssh***.heteml.jp's password:
-</pre>
+</code></pre>
 
 <p>パスワードを入力すると、以下のようにhetemlのリポジトリに変更内容が反映されます。</p>
-<pre class="highlight plaintext">Counting objects: 3, done.
+<pre><code class="highlight plaintext">Counting objects: 3, done.
 Writing objects: 100% (3/3), 215 bytes | 0 bytes/s, done.
 Total 3 (delta 0), reused 0 (delta 0)
 To ssh://kuro96@ssh160.heteml.jp:2222/home/sites/heteml/users160/k/u/r/kuro96/repos/myproject.git
  * [new branch]      master -&gt; master
-</pre>
+</code></pre>
 
 <p>hetemlにsshログイン後、myproject.git に移動して、<code>git log -p</code> コマンドで変更内容を確認します。</p>
-<pre class="highlight plaintext">cd repos/myproject.git
+<pre><code class="highlight plaintext">cd repos/myproject.git
 git log -p
-</pre>
+</code></pre>
 
 <p>以下のように変更が反映されていることを確認できます。</p>
-<pre class="highlight plaintext">commit 522111a8845c66aebb95de63bb6a65d405d33c2c
+<pre><code class="highlight plaintext">commit 522111a8845c66aebb95de63bb6a65d405d33c2c
 Author: kurotaky &lt;username@example.com&gt;
 Date:   Tue Dec 24 09:43:43 2013 +0900
 
@@ -269,7 +269,7 @@ Date:   Tue Dec 24 09:43:43 2013 +0900
 diff --git a/a.txt b/a.txt
 new file mode 100644
 index 0000000..e69de29
-</pre>
+</code></pre>
 
 <h2 id="参考url">参考URL</h2>
 
@@ -395,12 +395,12 @@ privateメソッドのテストを消せた時には良い設計に近づいて�
 <p><a href="http://www.mamp.info/en/index.html">MAMPダウンロード</a></p>
 
 <p>MAMPのphpを使用するための設定</p>
-<pre class="highlight plaintext"># ~/.bash_profile または ~/.zshrc をエディタで開いて入力してください。
+<pre><code class="highlight plaintext"># ~/.bash_profile または ~/.zshrc をエディタで開いて入力してください。
 export PATH="/Applications/MAMP/bin/php/php5.3.14/bin:$PATH"
 
 # 設定を反映
 /Users/kurotaky/lang/php% source ~/.zshrc
-</pre>
+</code></pre>
 
 <h3 id="fuelphpをインストール">FuelPHPをインストール</h3>
 
@@ -409,7 +409,7 @@ export PATH="/Applications/MAMP/bin/php/php5.3.14/bin:$PATH"
 <ul>
 <li><a href="http://fuelphp.com/">FuelPHP</a></li>
 <li><p><a href="http://press.nekoget.com/fuelphp_doc/">FuelPHP日本語ドキュメント</a></p>
-<pre class="highlight plaintext"># oil インストール
+<pre><code class="highlight plaintext"># oil インストール
  curl get.fuelphp.com/oil | sh
 
 # oil create [アプリケーション名] でアプリケーションを作成
@@ -425,7 +425,7 @@ export PATH="/Applications/MAMP/bin/php/php5.3.14/bin:$PATH"
 # シンボリックリンク作成
  cd /Applications/MAMP/htdoc
  ln -s ~/lang/php/blog/public blog
-</pre></li>
+</code></pre></li>
 </ul>
 
 <p>これで準備ができました。(MAMPは起動しておいてください！)
@@ -434,22 +434,22 @@ export PATH="/Applications/MAMP/bin/php/php5.3.14/bin:$PATH"
 <p><a href="http://localhost:8888/blog">http://localhost:8888/blog</a></p>
 
 <h3 id="scaffoldを使って簡単なブログっぽいアプリを作ってみる">scaffoldを使って簡単なブログっぽいアプリを作ってみる</h3>
-<pre class="highlight plaintext">oil generate scaffold post title:string summary:varchar[250] body:text
-</pre>
+<pre><code class="highlight plaintext">oil generate scaffold post title:string summary:varchar[250] body:text
+</code></pre>
 
 <p>これだけでok</p>
 
 <h4 id="oil-を実行しようとして以下のエラーが出た場合">oil を実行しようとして以下のエラーが出た場合</h4>
-<pre class="highlight plaintext">/Applications/MAMP/htdocs/blog% oil
+<pre><code class="highlight plaintext">/Applications/MAMP/htdocs/blog% oil
 This is not a valid Fuel installation so Oil is a bit lost.
 http://fuelphp.com/docs/installation/instructions.html
 
 # コマンドはパスが通っているところでここで叩かないとダメ
 著者の環境では User/kurotaky/lang/php/blog に移動して実行すればOK
-</pre>
+</code></pre>
 
 <h4 id="あるいは、こんなエラーが出た場合">あるいは、こんなエラーが出た場合</h4>
-<pre class="highlight plaintext">/Users/kurotaky/lang/php/blog% oil generate scaffold post title:string summary:varchar[250] body:text
+<pre><code class="highlight plaintext">/Users/kurotaky/lang/php/blog% oil generate scaffold post title:string summary:varchar[250] body:text
 zsh: no matches found: summary:varchar[250]
 
 # zsh の場合エスケープが必要らしい
@@ -470,7 +470,7 @@ Creating view: /Users/kurotaky/lang/php/blog/fuel/app/views/template.php
 001_create_posts
 
 # phpMyAdminであらかじめテーブルを作っていないと例外が出るかも。
-</pre>
+</code></pre>
 
 <p><a href="http://localhost:8888/MAMP/?language=Japanese">http://localhost:8888/MAMP/?language=Japanese</a> の phpMyAdminからデータベースを選択して、
 データベースを作成してください。(ここではfuel_devとしています)</p>
@@ -536,21 +536,21 @@ MVCモデルの基本的な説明やOSごとの環境設定、ユニットテス
 <p>※ 修正しました。(2012/11/20)</p>
 
 <p>bundler(1.2.2)以上が必要なので、gem updateした。  </p>
-<pre class="highlight plaintext">gem update bundler
-</pre>
+<pre><code class="highlight plaintext">gem update bundler
+</code></pre>
 
 <p>githubからrailsをcloneする。  </p>
-<pre class="highlight plaintext">cd ~/rails-projects/
+<pre><code class="highlight plaintext">cd ~/rails-projects/
 
 git clone git://github.com/rails/rails.git
-</pre>
+</code></pre>
 
 <p>rails new --edgeを実行。(test-appを作成する。)</p>
-<pre class="highlight plaintext">rails/railties/bin/rails new test-app --edge
-</pre>
+<pre><code class="highlight plaintext">rails/railties/bin/rails new test-app --edge
+</code></pre>
 
 <p>localで動かしてみる。</p>
-<pre class="highlight plaintext">    # test-appに移動
+<pre><code class="highlight plaintext">    # test-appに移動
     cd test-app
 
     # scaffold
@@ -561,7 +561,7 @@ git clone git://github.com/rails/rails.git
 
     # rails server
     rails s
-</pre>
+</code></pre>
 
 <p><a href="http://localhost:3000/products">http://localhost:3000/products</a> にアクセスしてアプリケーションが作成されているのを確認できた。</p>
 

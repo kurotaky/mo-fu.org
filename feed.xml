@@ -21,12 +21,12 @@
     <content type="html">&lt;h2 id="インストール"&gt;インストール&lt;/h2&gt;
 
 &lt;p&gt;Rコンソールを開いて以下のコマンドを入力する。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;install.packages("ggplot2")
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;install.packages("ggplot2")
 
-&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id="グラフを出力する"&gt;グラフを出力する&lt;/h2&gt;
-&lt;pre class="highlight plaintext"&gt;&amp;gt; library(ggplot2)
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;&amp;gt; library(ggplot2)
 &amp;gt; data &amp;lt;- read.csv("/Users/yuta/201401-lines-of-code.csv")
 &amp;gt; data
   day lines
@@ -40,7 +40,7 @@
 8   8   206
 &amp;gt; ggplot(data, aes(x=day, y=lines)) + geom_line() + geom_point()
 
-&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;
 </content>
   </entry>
   <entry>
@@ -69,41 +69,41 @@ Security Credentials を選択、Access Keys をクリックするとAccess Key 
 &lt;h2 id="s3にバケット作成する"&gt;S3にバケット作成する&lt;/h2&gt;
 
 &lt;p&gt;gateway.sqale.jp にsshログイン。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;ssh gateway.sqale.jp -p 2222
-&lt;/pre&gt;
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;ssh gateway.sqale.jp -p 2222
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;以下のコマンドを入力したあと、AWSのアクセスキーとシークレットキー入力します。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;s3cmd --configure
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;s3cmd --configure
 
-&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;code&gt;s3cmd mb&lt;/code&gt; コマンドでS3にバケットを作成します。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;s3cmd mb s3://sampleapp-backup
-&lt;/pre&gt;
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;s3cmd mb s3://sampleapp-backup
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;以下のようにメッセージが出力されれば、バケットの作成が完了です。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;Bucket 's3://sampleapp-backup/' created
-&lt;/pre&gt;
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;Bucket 's3://sampleapp-backup/' created
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id="s3にdumpファイルをアップロードする"&gt;S3にdumpファイルをアップロードする&lt;/h2&gt;
 
 &lt;p&gt;&lt;code&gt;s3cmd put&lt;/code&gt; コマンドでdumpファイルをアップロードします。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;s3cmd put 20140105-sampleapp-mysql.dump s3://sampleapp-backup/20140105-sampleapp-mysql.dump
-&lt;/pre&gt;
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;s3cmd put 20140105-sampleapp-mysql.dump s3://sampleapp-backup/20140105-sampleapp-mysql.dump
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id="定期的にdumpファイルをs3に保存する"&gt;定期的にdumpファイルをS3に保存する&lt;/h2&gt;
 
 &lt;p&gt;以下のようにrake task を作成してcronで設定すれば、
 定期的にdumpファイルを保存することができます。&lt;/p&gt;
-&lt;pre class="highlight ruby"&gt;&lt;span class="n"&gt;namespace&lt;/span&gt; &lt;span class="ss"&gt;:db&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="n"&gt;namespace&lt;/span&gt; &lt;span class="ss"&gt;:db&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
   &lt;span class="n"&gt;desc&lt;/span&gt; &lt;span class="s2"&gt;"mysql dump: db backup to Amazon S3"&lt;/span&gt;
 
   &lt;span class="n"&gt;task&lt;/span&gt; &lt;span class="ss"&gt;:backup&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="ss"&gt;:environment&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
-    &lt;span class="nb"&gt;system&lt;/span&gt; &lt;span class="s2"&gt;"mysqldump -u &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ENV&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'SQALE_USERNAME'&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; -h &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ENV&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'SQALE_HOST'&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; -p &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ENV&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'SQALE_DATABASE'&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; --password=&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ENV&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'SQALE_PASSWORD'&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; &amp;gt; ../tmp/&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;Time&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;now&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;strftime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'%Y%m%d'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;-sampleapp-mysql.dump"&lt;/span&gt;
+    &lt;span class="nb"&gt;system&lt;/span&gt; &lt;span class="s2"&gt;"mysqldump -u &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'SQALE_USERNAME'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; -h &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'SQALE_HOST'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; -p &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'SQALE_DATABASE'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; --password=&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'SQALE_PASSWORD'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; &amp;gt; ../tmp/&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;Time&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;now&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;strftime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'%Y%m%d'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;-sampleapp-mysql.dump"&lt;/span&gt;
     &lt;span class="nb"&gt;system&lt;/span&gt; &lt;span class="s2"&gt;"s3cmd put ../tmp/&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;Time&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;now&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;strftime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'%Y%m%d'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;-sampleapp-mysql.dump s3://sampleapp-backup/&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;Time&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;now&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;year&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;/&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;Time&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;now&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;month&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;/"&lt;/span&gt;
   &lt;span class="k"&gt;end&lt;/span&gt;
 &lt;span class="k"&gt;end&lt;/span&gt;
-&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id="参考url"&gt;参考URL&lt;/h2&gt;
 
@@ -125,53 +125,53 @@ Security Credentials を選択、Access Keys をクリックするとAccess Key 
     <content type="html">&lt;h2 id="gitの初期設定"&gt;gitの初期設定&lt;/h2&gt;
 
 &lt;p&gt;ターミナルを使ってsshでログインします。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;ssh username@ssh***.heteml.jp -p 2222
-&lt;/pre&gt;
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;ssh username@ssh***.heteml.jp -p 2222
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;2013/12/24現在gitのバージョンは1.7.3.4でした。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;-bash-3.00$ pwd
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;-bash-3.00$ pwd
 /home/sites/heteml/users***/u/s/e/username
 
 -bash-3.00$ git --version
 git version 1.7.3.4
-&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;ログイン後、ユーザー名とメールアドレス等の設定をします。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;# ユーザー名とメールアドレスの設定
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;# ユーザー名とメールアドレスの設定
 git config --global user.email "username@example.com"  
 git config --global user.name "username"
 
 # 端末に色つきの文字を出力する
 git config --global color.ui auto
-&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;設定を確認します。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;git config --global --list
-&lt;/pre&gt;
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;git config --global --list
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id="heteml上にリポジトリを作成する"&gt;heteml上にリポジトリを作成する&lt;/h2&gt;
 
 &lt;p&gt;ディレクトリを作成して、移動します。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;mkdir myproject
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;mkdir myproject
 cd myproject
-&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;git init コマンドでリポジトリを作成します。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;git init
-&lt;/pre&gt;
-&lt;pre class="highlight plaintext"&gt;Initialized empty Git repository in /home/sites/heteml/users***/u/s/e/username/myproject/.git/
-&lt;/pre&gt;
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;git init
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;Initialized empty Git repository in /home/sites/heteml/users***/u/s/e/username/myproject/.git/
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;index.html を作成します。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;touch index.html
-&lt;/pre&gt;
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;touch index.html
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;git status コマンドで変更内容を確認します。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;git status
-&lt;/pre&gt;
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;git status
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;コマンドを実行すると、以下のように表示されます。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;# On branch master
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;# On branch master
 #
 # Initial commit
 #
@@ -180,14 +180,14 @@ cd myproject
 #
 #   index.html
 nothing added to commit but untracked files present (use "git add" to track)
-&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;git add コマンドを実行します。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;git add index.html
-&lt;/pre&gt;
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;git add index.html
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;git add した後に git status コマンドを実行すると、以下のように表示されます。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;# On branch master
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;# On branch master
 #
 # Initial commit
 #
@@ -197,58 +197,58 @@ nothing added to commit but untracked files present (use "git add" to track)
 #   new file:   index.html
 #
 
-&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;git commit コマンドでコミットします。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;git commit -m 'first commit'
-&lt;/pre&gt;
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;git commit -m 'first commit'
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;tig や git log で確認するとコミット履歴を見ることが出来ます。&lt;/p&gt;
 
 &lt;h2 id="hetemlにリポジトリを作成してローカルpcからpushする"&gt;hetemlにリポジトリを作成してローカルPCからpushする&lt;/h2&gt;
 
 &lt;p&gt;heteml に sshログインして、ディレクトリを作成します。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;mkdir repos
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;mkdir repos
 cd repos
 mkdir myproject.git
 cd myproject.git
-&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;git init コマンドでリポジトリを作成します。
 この時に &lt;code&gt;--bare&lt;/code&gt; オプションを指定すると変更のみを管理するリポジトリを作成することができます。
 また、 &lt;code&gt;--shared&lt;/code&gt; オプションを指定すると共同リポジトリとして作成することが出来ます。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;git init --bare --shared
-&lt;/pre&gt;
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;git init --bare --shared
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;ローカルPCでmyprojectのリポジトリを作成します。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;mkdir myproject
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;mkdir myproject
 cd myproject
 git init
-&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;hetemlに作成したリポジトリのURLを git remote コマンドで登録します。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;git remote add origin ssh://username@ssh***.heteml.jp:2222/home/sites/heteml/users***/u/s/e/username/repos/myproject.git
-&lt;/pre&gt;
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;git remote add origin ssh://username@ssh***.heteml.jp:2222/home/sites/heteml/users***/u/s/e/username/repos/myproject.git
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;git remote -v で登録情報を確認できます。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;git remote -v
-&lt;/pre&gt;
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;git remote -v
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;ファイルを作成します。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;touch a.txt
-&lt;/pre&gt;
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;touch a.txt
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;add して commit します。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;git add .
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;git add .
 git commit -m 'inital import'
-&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;hetemlのリポジトリにpushして変更内容を反映させます。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;git push origin master
-&lt;/pre&gt;
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;git push origin master
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;sshログインのためのパスワードを聞かれるので、入力して下さい。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;-----------------------------------------------------
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;-----------------------------------------------------
 --***-------------------------------------------***--
 --***---------------***-------------------------***--
 --***---------------******----------------------***--
@@ -260,23 +260,23 @@ git commit -m 'inital import'
 -----------------------------------------------------
 
 username@ssh***.heteml.jp's password:
-&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;パスワードを入力すると、以下のようにhetemlのリポジトリに変更内容が反映されます。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;Counting objects: 3, done.
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;Counting objects: 3, done.
 Writing objects: 100% (3/3), 215 bytes | 0 bytes/s, done.
 Total 3 (delta 0), reused 0 (delta 0)
 To ssh://kuro96@ssh160.heteml.jp:2222/home/sites/heteml/users160/k/u/r/kuro96/repos/myproject.git
  * [new branch]      master -&amp;gt; master
-&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;hetemlにsshログイン後、myproject.git に移動して、&lt;code&gt;git log -p&lt;/code&gt; コマンドで変更内容を確認します。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;cd repos/myproject.git
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;cd repos/myproject.git
 git log -p
-&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;以下のように変更が反映されていることを確認できます。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;commit 522111a8845c66aebb95de63bb6a65d405d33c2c
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;commit 522111a8845c66aebb95de63bb6a65d405d33c2c
 Author: kurotaky &amp;lt;username@example.com&amp;gt;
 Date:   Tue Dec 24 09:43:43 2013 +0900
 
@@ -285,7 +285,7 @@ Date:   Tue Dec 24 09:43:43 2013 +0900
 diff --git a/a.txt b/a.txt
 new file mode 100644
 index 0000000..e69de29
-&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id="参考url"&gt;参考URL&lt;/h2&gt;
 

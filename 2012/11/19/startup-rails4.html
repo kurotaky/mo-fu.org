@@ -17,21 +17,21 @@
 <p>※ 修正しました。(2012/11/20)</p>
 
 <p>bundler(1.2.2)以上が必要なので、gem updateした。  </p>
-<pre class="highlight plaintext">gem update bundler
-</pre>
+<pre><code class="highlight plaintext">gem update bundler
+</code></pre>
 
 <p>githubからrailsをcloneする。  </p>
-<pre class="highlight plaintext">cd ~/rails-projects/
+<pre><code class="highlight plaintext">cd ~/rails-projects/
 
 git clone git://github.com/rails/rails.git
-</pre>
+</code></pre>
 
 <p>rails new --edgeを実行。(test-appを作成する。)</p>
-<pre class="highlight plaintext">rails/railties/bin/rails new test-app --edge
-</pre>
+<pre><code class="highlight plaintext">rails/railties/bin/rails new test-app --edge
+</code></pre>
 
 <p>localで動かしてみる。</p>
-<pre class="highlight plaintext">    # test-appに移動
+<pre><code class="highlight plaintext">    # test-appに移動
     cd test-app
 
     # scaffold
@@ -42,7 +42,7 @@ git clone git://github.com/rails/rails.git
 
     # rails server
     rails s
-</pre>
+</code></pre>
 
 <p><a href="http://localhost:3000/products">http://localhost:3000/products</a> にアクセスしてアプリケーションが作成されているのを確認できた。</p>
 

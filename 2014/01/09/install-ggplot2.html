@@ -15,12 +15,12 @@
       <h2 id="インストール">インストール</h2>
 
 <p>Rコンソールを開いて以下のコマンドを入力する。</p>
-<pre class="highlight plaintext">install.packages("ggplot2")
+<pre><code class="highlight plaintext">install.packages("ggplot2")
 
-</pre>
+</code></pre>
 
 <h2 id="グラフを出力する">グラフを出力する</h2>
-<pre class="highlight plaintext">&gt; library(ggplot2)
+<pre><code class="highlight plaintext">&gt; library(ggplot2)
 &gt; data &lt;- read.csv("/Users/yuta/201401-lines-of-code.csv")
 &gt; data
   day lines
@@ -34,7 +34,7 @@
 8   8   206
 &gt; ggplot(data, aes(x=day, y=lines)) + geom_line() + geom_point()
 
-</pre>
+</code></pre>
 
     </div>
     
