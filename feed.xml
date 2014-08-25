@@ -14,13 +14,13 @@
     <link rel="alternate" href="http://blog.url.com/2014/08/24/running-lean-1.html"/>
     <id>http://blog.url.com/2014/08/24/running-lean-1.html</id>
     <published>2014-08-24T20:31:00+09:00</published>
-    <updated>2014-08-25T09:21:59+09:00</updated>
+    <updated>2014-08-25T09:36:04+09:00</updated>
     <author>
       <name>Article Author</name>
     </author>
-    <content type="html">&lt;h1 id="実践リーンスタートアップを読んだ"&gt;実践リーンスタートアップを読んだ&lt;/h1&gt;
+    <content type="html">&lt;h1 id="実践リーンスタートアップのイントロダクション"&gt;実践リーンスタートアップのイントロダクション&lt;/h1&gt;
 
-&lt;p&gt;イントロダクションのメモ&lt;/p&gt;
+&lt;p&gt;めも&lt;/p&gt;
 
 &lt;h2 id="メタ原則"&gt;メタ原則&lt;/h2&gt;
 
@@ -62,11 +62,10 @@
 
 &lt;h4 id="スタートアップ3つのステージ"&gt;スタートアップ3つのステージ&lt;/h4&gt;
 
-&lt;ol&gt;
-&lt;li&gt;課題/解決フィット(Problem/Solution Fit)
-解決に値する課題はあるか?
-アイデアは安くても、それに取り組むコストは高い&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h5 id="1.-課題/解決フィット(problem/solution-fit)"&gt;1. 課題/解決フィット(Problem/Solution Fit)&lt;/h5&gt;
+
+&lt;p&gt;解決に値する課題はあるか?
+アイデアは安くても、それに取り組むコストは高い&lt;/p&gt;
 
 &lt;p&gt;定性的な顧客観察とインタビュー技法を組み合わせて以下の3つの質問に答えていく&lt;/p&gt;
 
@@ -79,10 +78,9 @@
 &lt;p&gt;ここから適切な課題に対応する最小限の機能を引き出す。
 実用最小限の製品(MVP: Minimum Viable Product)&lt;/p&gt;
 
-&lt;ol&gt;
-&lt;li&gt;製品/市場フィット(Product/Market Fit)
-誰かに必要とされるものを構築したか?&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h5 id="2.-製品/市場フィット(product/market-fit)"&gt;2. 製品/市場フィット(Product/Market Fit)&lt;/h5&gt;
+
+&lt;p&gt;誰かに必要とされるものを構築したか?&lt;/p&gt;
 
 &lt;p&gt;解決に値する課題があり、MVPを構築できたら、
 そのソリューションがどれだけ課題を解決しているかテストする
@@ -91,10 +89,9 @@
 &lt;p&gt;トランクション(事業が空回りしていないこと) 製品/市場フィットは最初の重要なマイルストーン
 顧客に登録してもらい、定着させて、お金を払ってもらう&lt;/p&gt;
 
-&lt;ol&gt;
-&lt;li&gt;拡大(Scale)
-どうやって成長を加速させるのか?&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h5 id="3.-拡大(scale)"&gt;3. 拡大(Scale)&lt;/h5&gt;
+
+&lt;p&gt;どうやって成長を加速させるのか?&lt;/p&gt;
 
 &lt;p&gt;成長に目を向ける、ビジネスモデルの拡大&lt;/p&gt;
 
@@ -106,8 +103,7 @@
 &lt;p&gt;ピボットとは、学習を続けながらスタートアップの方向性を変更すること
 ピボットはうまくいくプランを探すことであり、最適化はプランを加速するという違いがある&lt;/p&gt;
 
-&lt;p&gt;学習を最大化するには
-大胆な成果を狙うべき
+&lt;p&gt;学習を最大化するには、大胆な成果を狙うべき
 「送信」ボタンの色を変更するよりも、ランディングページ全体を変更したほうがよい&lt;/p&gt;
 
 &lt;p&gt;1つの顧客セグメントのUVP(独自の価値提案: Unique value Proposition)を変更するよりも、
