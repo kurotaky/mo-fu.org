@@ -5,10 +5,126 @@
   <id>http://blog.url.com/</id>
   <link href="http://blog.url.com/"/>
   <link href="http://blog.url.com/feed.xml" rel="self"/>
-  <updated>2014-01-09T01:45:38+09:00</updated>
+  <updated>2014-08-24T20:31:00+09:00</updated>
   <author>
     <name>Blog Author</name>
   </author>
+  <entry>
+    <title>running-lean-1</title>
+    <link rel="alternate" href="http://blog.url.com/2014/08/24/running-lean-1.html"/>
+    <id>http://blog.url.com/2014/08/24/running-lean-1.html</id>
+    <published>2014-08-24T20:31:00+09:00</published>
+    <updated>2014-08-25T09:21:59+09:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h1 id="実践リーンスタートアップを読んだ"&gt;実践リーンスタートアップを読んだ&lt;/h1&gt;
+
+&lt;p&gt;イントロダクションのメモ&lt;/p&gt;
+
+&lt;h2 id="メタ原則"&gt;メタ原則&lt;/h2&gt;
+
+&lt;p&gt;Running Leanの本質は以下の3つの手順に分けられる&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;プランAを文章化する&lt;/li&gt;
+&lt;li&gt;プランで最もリスクの高い部分を見つける&lt;/li&gt;
+&lt;li&gt;プランを体系的にテストする&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id="手順1"&gt;手順1&lt;/h3&gt;
+
+&lt;p&gt;起業家の多くは強いビジョンとプランAを持っている
+しかしプランAは役に立たない&lt;/p&gt;
+
+&lt;p&gt;強いビジョンは理念や意義の形成に重要
+リーンスタートアップは事実でビジョンを裏付ける&lt;/p&gt;
+
+&lt;p&gt;テストされていない仮定や仮説を体系的にテストして改善していく事が必要&lt;/p&gt;
+
+&lt;p&gt;ビジョンを書き出して少なくとも1人に共有する(リーンキャンバス)&lt;/p&gt;
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;顧客はあなたのソリューションに興味がない。興味があるのは、顧客自身の課題だ。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;投資家や顧客は、課題のことを気にかけているのであり、あなたのソリューションには(まだ)興味がない&lt;/p&gt;
+
+&lt;p&gt;最高のソリューションを構築するだけでなく、ビジネスモデルの全体像を把握して、
+各要素をうまくまとめることが必要&lt;/p&gt;
+
+&lt;p&gt;リーンキャンバスとはビジネスモデルを9つの部品に分解し、
+リスクの高いものから体系的にテストするもの&lt;/p&gt;
+
+&lt;h3 id="手順2"&gt;手順2&lt;/h3&gt;
+
+&lt;p&gt;成功する製品を構築するということは、リスクを緩和するということ&lt;/p&gt;
+
+&lt;p&gt;スタートアップの最も大きなリスクとは、誰も欲しくないものを作ること&lt;/p&gt;
+
+&lt;h4 id="スタートアップ3つのステージ"&gt;スタートアップ3つのステージ&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;課題/解決フィット(Problem/Solution Fit)
+解決に値する課題はあるか?
+アイデアは安くても、それに取り組むコストは高い&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;定性的な顧客観察とインタビュー技法を組み合わせて以下の3つの質問に答えていく&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;それは顧客が必要としているものですか? (必要性)&lt;/li&gt;
+&lt;li&gt;顧客はお金を支払ってくれますか? 支払ってくれないのであれば、誰が支払ってくれますか? (成長性)&lt;/li&gt;
+&lt;li&gt;それは解決可能ですか? (実現性)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;ここから適切な課題に対応する最小限の機能を引き出す。
+実用最小限の製品(MVP: Minimum Viable Product)&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;製品/市場フィット(Product/Market Fit)
+誰かに必要とされるものを構築したか?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;解決に値する課題があり、MVPを構築できたら、
+そのソリューションがどれだけ課題を解決しているかテストする
+誰かに必要とされるものを構築したかを計測&lt;/p&gt;
+
+&lt;p&gt;トランクション(事業が空回りしていないこと) 製品/市場フィットは最初の重要なマイルストーン
+顧客に登録してもらい、定着させて、お金を払ってもらう&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;拡大(Scale)
+どうやって成長を加速させるのか?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;成長に目を向ける、ビジネスモデルの拡大&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;製品/市場フィットの前: 検証による学習とピボット&lt;/li&gt;
+&lt;li&gt;製品/市場フィット後: 成長と最適化&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;ピボットとは、学習を続けながらスタートアップの方向性を変更すること
+ピボットはうまくいくプランを探すことであり、最適化はプランを加速するという違いがある&lt;/p&gt;
+
+&lt;p&gt;学習を最大化するには
+大胆な成果を狙うべき
+「送信」ボタンの色を変更するよりも、ランディングページ全体を変更したほうがよい&lt;/p&gt;
+
+&lt;p&gt;1つの顧客セグメントのUVP(独自の価値提案: Unique value Proposition)を変更するよりも、
+複数の顧客セグメントにさまざまなUVPを試すほうがよい&lt;/p&gt;
+
+&lt;p&gt;資金調達に適した時期は 製品/市場フィット後&lt;/p&gt;
+
+&lt;h3 id="手順3"&gt;手順3&lt;/h3&gt;
+
+&lt;p&gt;プランを体系的にテストする&lt;/p&gt;
+
+&lt;p&gt;実験とはなにか
+構築 - 計測 - 学習ループ&lt;/p&gt;
+
+&lt;p&gt;イテレーションのメタパターン&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>ggplot2をインストールして使うまで</title>
     <link rel="alternate" href="http://blog.url.com/2014/01/09/install-ggplot2.html"/>
@@ -383,18 +499,6 @@ privateメソッドのテストを消せた時には良い設計に近づいて�
 
 &lt;p&gt;&lt;code&gt;which vim&lt;/code&gt; を入力して &lt;code&gt;/Applications/MacVim.app/Contents/MacOS/vim&lt;/code&gt;
 が表示されればOK。&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Change my blog's url</title>
-    <link rel="alternate" href="http://blog.url.com/2013/09/15/i-change-my-blog-name.html"/>
-    <id>http://blog.url.com/2013/09/15/i-change-my-blog-name.html</id>
-    <published>2013-09-15T22:59:21+09:00</published>
-    <updated>2014-06-09T22:55:43+09:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;&lt;del&gt;mo-fu.org&lt;/del&gt; -&amp;gt; &lt;a href="http://blog.mo-fu.org"&gt;blog.mo-fu.org&lt;/a&gt;&lt;/p&gt;
 </content>
   </entry>
 </feed>
