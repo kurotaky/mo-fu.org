@@ -5,10 +5,69 @@
   <id>http://blog.mo-fu.org/</id>
   <link href="http://blog.mo-fu.org/"/>
   <link href="http://blog.mo-fu.org/feed.xml" rel="self"/>
-  <updated>2014-08-24T20:31:00+09:00</updated>
+  <updated>2014-09-02T08:45:00+09:00</updated>
   <author>
     <name>Yuta Kurotaki</name>
   </author>
+  <entry>
+    <title>yapc-asia-2014-day2</title>
+    <link rel="alternate" href="http://blog.mo-fu.org/2014/09/02/yapc-asia-2014-day2.html"/>
+    <id>http://blog.mo-fu.org/2014/09/02/yapc-asia-2014-day2.html</id>
+    <published>2014-09-02T08:45:00+09:00</published>
+    <updated>2014-09-02T09:59:48+09:00</updated>
+    <author>
+      <name>Yuta Kurotaki</name>
+    </author>
+    <content type="html">&lt;h1 id="yapc::asia-tokyo-2014-2日目に参加しました"&gt;YAPC::Asia Tokyo 2014 2日目に参加しました&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href="http://yapcasia.org/2014/"&gt;http://yapcasia.org/2014/&lt;/a&gt; の二日目に個人スポンサーとして参加してきました。
+とても勉強になりました。印象に残ったプレゼンの感想を以下にまとめておきます。&lt;/p&gt;
+
+&lt;h2 id="半端なphpdisでphperに陰で笑われないためのperl-monger向け最新php事情"&gt;半端なPHPDisでPHPerに陰で笑われないためのPerl Monger向け最新PHP事情&lt;/h2&gt;
+
+&lt;p&gt;PHPの仕様を理解して、自分のシステムで活用しているからこそできるプレゼンだなと思いました。&lt;/p&gt;
+
+&lt;p&gt;とてもおもしろかったです。ベストトーク賞おめでとうございます。
+自分がPHPの言語仕様をもっと深く理解していたら、もっと笑えたと思う。&lt;/p&gt;
+
+&lt;p&gt;PHP5.6 の追加された機能チェックしよう...
+&lt;a href="http://php.net/archive/2014.php#id2014-08-28-1"&gt;http://php.net/archive/2014.php#id2014-08-28-1&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="mobile-application-development-for-perl-mongers"&gt;Mobile Application Development for Perl Mongers&lt;/h2&gt;
+
+&lt;p&gt;Webアプリとモバイルアプリの開発フローの違いについて色々と学ぶことが多かったです。
+簡単にロールバックが出来なかったり、ユーザーが色々なバージョンを使っていてもそれなりに使えてしまうという点が
+Webアプリと違っていてなるほど...と思いました。&lt;/p&gt;
+
+&lt;p&gt;iPhone/Androidアプリのリリース時のタスクなどについても知ることが出来て良かった。&lt;/p&gt;
+
+&lt;p&gt;あと、カバレッジ計測はあまり行われていないようだった。
+組み込みのものは微妙みたいで、動かすとテスト落ちたりするらしい。&lt;/p&gt;
+
+&lt;h2 id="ライトニングトーク"&gt;ライトニングトーク&lt;/h2&gt;
+
+&lt;p&gt;今自分に足りないものを色々と確認することが出来ました。
+外部のコミュニティやイベントにもっと参加していきたい！
+と思える内容の発表がいくつかありました。&lt;/p&gt;
+
+&lt;h2 id="キーノート"&gt;キーノート&lt;/h2&gt;
+
+&lt;p&gt;今まで歩んできたキャリアの話や今やっていることの話を聞くことができました。
+会社では受託開発をあえて50%残しているそうで、「新しい技術に出会えるのが楽しい」ということを話されていました。
+自分もロールモデルにしている方はたくさんいるのですが、その人達を見習って、継続して勉強していこうと思います。&lt;/p&gt;
+
+&lt;h2 id="その他"&gt;その他&lt;/h2&gt;
+
+&lt;p&gt;運営スタッフの方々お疲れさまでした。快適に過ごすことが出来ました。
+YAPCパーカーがとても良かったです。各社のノベルティももらって嬉しいものばかりでした。&lt;/p&gt;
+
+&lt;p&gt;弊社のノベルティは写真だったのですが、
+トートバッグから写真を取り出した時に、なんともいえない気持ちになりました。
+今その写真は部屋の一番高い所に飾ってあります。&lt;/p&gt;
+
+&lt;p&gt;あと、ラーメンを1日3回食べてる人がいたので体調が心配です。&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>running-lean-1</title>
     <link rel="alternate" href="http://blog.mo-fu.org/2014/08/24/running-lean-1.html"/>
@@ -465,36 +524,6 @@ privateメソッドのテストを消せた時には良い設計に近づいて�
 &lt;a href="http://qa.atmarkit.co.jp/q/2784"&gt;http://qa.atmarkit.co.jp/q/2784&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;privateメソッドのテストについて気になったので読んでみた。勉強になる！&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>install-mac-vim74</title>
-    <link rel="alternate" href="http://blog.mo-fu.org/2013/09/29/install-mac-vim74.html"/>
-    <id>http://blog.mo-fu.org/2013/09/29/install-mac-vim74.html</id>
-    <published>2013-09-29T01:29:31+09:00</published>
-    <updated>2014-06-09T22:55:43+09:00</updated>
-    <author>
-      <name>Yuta Kurotaki</name>
-    </author>
-    <content type="html">&lt;p&gt;Vim7.4 が出ているのでインストールしました。&lt;br&gt;
-&lt;a href="http://vim-jp.org/blog/2013/08/10/vim_7.4_released.html"&gt;http://vim-jp.org/blog/2013/08/10/vim_7.4_released.html&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id="macにvim7.4をインストールする。"&gt;macにVim7.4をインストールする。&lt;/h3&gt;
-
-&lt;p&gt;MacVim-KaoriYa を使う場合、ダウンロードはこちらから。&lt;br&gt;
-&lt;a href="https://code.google.com/p/macvim-kaoriya/downloads/list"&gt;https://code.google.com/p/macvim-kaoriya/downloads/list&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;インストール後、Launchpad のMacVim アイコンをクリックすれば、
-アプリケーションが起動されます。&lt;/p&gt;
-
-&lt;p&gt;コンソールで &lt;code&gt;vim&lt;/code&gt; を使いたい場合は、alias でパスを指定する。
-自分はzsh を使っているので、 &lt;code&gt;.zshrc&lt;/code&gt; に以下のような設定を追記する。&lt;br&gt;
-&lt;code&gt;alias -g vim=&amp;#39;/Applications/MacVim.app/Contents/MacOS/vim&amp;#39;&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;コンソールで &lt;code&gt;source ~/.zshrc&lt;/code&gt; を入力して、変更を反映させる。&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;which vim&lt;/code&gt; を入力して &lt;code&gt;/Applications/MacVim.app/Contents/MacOS/vim&lt;/code&gt;
-が表示されればOK。&lt;/p&gt;
 </content>
   </entry>
 </feed>
