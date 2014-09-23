@@ -5,10 +5,41 @@
   <id>http://blog.mo-fu.org/</id>
   <link href="http://blog.mo-fu.org/"/>
   <link href="http://blog.mo-fu.org/feed.xml" rel="self"/>
-  <updated>2014-09-02T08:45:00+09:00</updated>
+  <updated>2014-09-23T21:26:00+09:00</updated>
   <author>
     <name>Yuta Kurotaki</name>
   </author>
+  <entry>
+    <title>RubyKaigi2014とRubyHirobaに参加してきた</title>
+    <link rel="alternate" href="http://blog.mo-fu.org/2014/09/23/rubykaigi2014-and-rubyhiroba2014.html"/>
+    <id>http://blog.mo-fu.org/2014/09/23/rubykaigi2014-and-rubyhiroba2014.html</id>
+    <published>2014-09-23T21:26:00+09:00</published>
+    <updated>2014-09-23T21:28:57+09:00</updated>
+    <author>
+      <name>Yuta Kurotaki</name>
+    </author>
+    <content type="html">&lt;h2 id="rubykaigi2014とrubyhirobaに参加してきた"&gt;RubyKaigi2014とRubyHirobaに参加してきた&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href="http://rubykaigi.org/2014"&gt;RubyKaigi2014&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;沢山の学びがあった、懇親会では札幌RubyKaigi の時に一緒にスタッフやっていた方とお話できたりしてうれしかったです。
+パーフェクトRubyとか家から持ってきて、サインもらえばよかった…。&lt;/p&gt;
+
+&lt;p&gt;とりあえず&lt;a href="https://www.ruby-lang.org/en/news/2014/09/18/ruby-2.2.0-preview1-released/"&gt;Ruby2.2.0のpreview1&lt;/a&gt; を使って、自分が作ってるRailsアプリケーションを動かしたりしてます。&lt;/p&gt;
+
+&lt;p&gt;RubyKaigi2014の翌日は&lt;a href="http://rubyhiroba.org/2014/"&gt;RubyHiroba&lt;/a&gt;に参加しました。
+そこでは&lt;a href="http://railsgirls.com/tokyo"&gt;RailsGirlsTokyo4th&lt;/a&gt;でコーチをしました。今回がはじめてのコーチ業だったのですが、とても楽しく出来ました。自分も教えている中で勉強になることがたくさんありました。これからは、地域コミュニティにも少しづつ参加していこうと思います。&lt;/p&gt;
+
+&lt;p&gt;3分でスポンサーLTというのをやりましたので、資料を置いておきます。&lt;/p&gt;
+
+&lt;script async class="speakerdeck-embed" data-id="11fe6e0024210132bdda12a238f45ab0" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;ロリポおじさんに投票よろしくお願いします！&lt;/p&gt;
+
+&lt;p&gt;とても充実した4日間でした。
+RubyKaigi, RubyHirobaの関係者のみなさま、お疲れ様でした！&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>yapc-asia-2014-day2</title>
     <link rel="alternate" href="http://blog.mo-fu.org/2014/09/02/yapc-asia-2014-day2.html"/>
@@ -470,60 +501,6 @@ index 0000000..e69de29
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.amazon.co.jp/dp/4274068641"&gt;http://www.amazon.co.jp/dp/4274068641&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>プライベートメソッドのテストについて</title>
-    <link rel="alternate" href="http://blog.mo-fu.org/2013/11/18/about-testing-for-private-method.html"/>
-    <id>http://blog.mo-fu.org/2013/11/18/about-testing-for-private-method.html</id>
-    <published>2013-11-18T21:07:00+09:00</published>
-    <updated>2014-06-09T22:55:43+09:00</updated>
-    <author>
-      <name>Yuta Kurotaki</name>
-    </author>
-    <content type="html">&lt;h3 id="プライベートメソッドのテスト書いてて思ったことの記録"&gt;プライベートメソッドのテスト書いてて思ったことの記録&lt;/h3&gt;
-
-&lt;p&gt;とあるプロダクトで、APIにRequestを送る部分のテストを書いている時に、
-private メソッドをテストしようとしたところ、むむ、テストできないぞ！
-となりました。&lt;/p&gt;
-
-&lt;p&gt;protected なメソッドならテストできるけど、privateなメソッドだとテストできない！となって
-ReflectionMethod を使用しようとしたらPHP5.3からなのでだめでした。
-(テストを書いているプロダクトコードはPHP5.1系を使っている)&lt;/p&gt;
-
-&lt;p&gt;メソッドのスコープをprotected(もしくはfinal protected)にするしかないのか。。&lt;/p&gt;
-
-&lt;p&gt;と思った時に、そもそもprivate なメソッドってテストするべきものではない!?
-というふうに思ってきて、外からアクセスできるpublic なメソッドを通してテストするようにしないと
-いけないのでは？ということを周りの開発メンバーに話して色々考えた。&lt;/p&gt;
-
-&lt;p&gt;public メソッドを通してprivateなメソッドもテストができているなら、
-privateメソッドのテストは書かなくて良いという話になってしまうのですが、
-privateメソッドの中でif文とかで条件分岐があった時に、
-その条件分岐の部分もテストできているか?みたいなことを考慮しないといけない。&lt;/p&gt;
-
-&lt;p&gt;publicなメソッドのテストを通そうとするのが難しい時はprivateのテストも書いて、
-まずは落ちるテストを書いて、テストが通るように修正する事からはじめることにしました。
-（RED → GREEN → リファクタリング のサイクル！）&lt;/p&gt;
-
-&lt;p&gt;そして、メソッドを分割したり、他のクラスに移動したりとかリファクタリングしていく中で、
-最終的にprivateメソッドのテストが必要無くなったら、それまでに使っていたprivateメソッドのテストは消せば良い。
-という自分の中でのとりあえずの答えです。&lt;/p&gt;
-
-&lt;p&gt;今、自分がテストを書いている状況はプロダクトコードが自分で書いた状態ではなく、
-テストコードがないという状況だったので、テストを書くことは仕様を書いていく意味も含んでいると思い、
-privateなメソッドのテストを書くことは、リファクタリングのはじめの一歩としては良いと考え、
-書くことにしました。&lt;/p&gt;
-
-&lt;p&gt;納期と自分の技術と要相談ですが、RED → GREEN → リファクタリングを繰り返して、
-privateメソッドのテストを消せた時には良い設計に近づいているはず！&lt;/p&gt;
-
-&lt;h3 id="参考"&gt;参考&lt;/h3&gt;
-
-&lt;p&gt;プライベートメソッドのユニットテストは書かないもの？&lt;br&gt;
-&lt;a href="http://qa.atmarkit.co.jp/q/2784"&gt;http://qa.atmarkit.co.jp/q/2784&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;privateメソッドのテストについて気になったので読んでみた。勉強になる！&lt;/p&gt;
 </content>
   </entry>
 </feed>

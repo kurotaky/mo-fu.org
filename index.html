@@ -13,6 +13,30 @@
     
     <div id="main" role="main">
       
+  <h2><a href="/2014/09/23/rubykaigi2014-and-rubyhiroba2014.html">RubyKaigi2014とRubyHirobaに参加してきた</a> <span>Sep 23</span></h2>
+  <!-- use article.summary(250) if you have Nokogiri available to show just
+       the first 250 characters -->
+  <h2 id="rubykaigi2014とrubyhirobaに参加してきた">RubyKaigi2014とRubyHirobaに参加してきた</h2>
+
+<p><a href="http://rubykaigi.org/2014">RubyKaigi2014</a></p>
+
+<p>沢山の学びがあった、懇親会では札幌RubyKaigi の時に一緒にスタッフやっていた方とお話できたりしてうれしかったです。
+パーフェクトRubyとか家から持ってきて、サインもらえばよかった…。</p>
+
+<p>とりあえず<a href="https://www.ruby-lang.org/en/news/2014/09/18/ruby-2.2.0-preview1-released/">Ruby2.2.0のpreview1</a> を使って、自分が作ってるRailsアプリケーションを動かしたりしてます。</p>
+
+<p>RubyKaigi2014の翌日は<a href="http://rubyhiroba.org/2014/">RubyHiroba</a>に参加しました。
+そこでは<a href="http://railsgirls.com/tokyo">RailsGirlsTokyo4th</a>でコーチをしました。今回がはじめてのコーチ業だったのですが、とても楽しく出来ました。自分も教えている中で勉強になることがたくさんありました。これからは、地域コミュニティにも少しづつ参加していこうと思います。</p>
+
+<p>3分でスポンサーLTというのをやりましたので、資料を置いておきます。</p>
+
+<script async class="speakerdeck-embed" data-id="11fe6e0024210132bdda12a238f45ab0" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>ロリポおじさんに投票よろしくお願いします！</p>
+
+<p>とても充実した4日間でした。
+RubyKaigi, RubyHirobaの関係者のみなさま、お疲れ様でした！</p>
+
   <h2><a href="/2014/09/02/yapc-asia-2014-day2.html">yapc-asia-2014-day2</a> <span>Sep  2</span></h2>
   <!-- use article.summary(250) if you have Nokogiri available to show just
        the first 250 characters -->
@@ -685,55 +709,6 @@ MVCモデルの基本的な説明やOSごとの環境設定、ユニットテス
 <p>明日は<a href="https://twitter.com/Tukimikage">@tukimikage</a> さんです。
 お楽しみに！</p>
 
-  <h2><a href="/2012/11/19/startup-rails4.html">rails4(edge)を動かしてみた。</a> <span>Nov 19</span></h2>
-  <!-- use article.summary(250) if you have Nokogiri available to show just
-       the first 250 characters -->
-  <p>rails4(edge)をlocal環境で動かしてみたのでメモ(2012/11/18)。</p>
-
-<p>※ 修正しました。(2012/11/20)</p>
-
-<p>bundler(1.2.2)以上が必要なので、gem updateした。  </p>
-<pre><code class="highlight plaintext">gem update bundler
-</code></pre>
-
-<p>githubからrailsをcloneする。  </p>
-<pre><code class="highlight plaintext">cd ~/rails-projects/
-
-git clone git://github.com/rails/rails.git
-</code></pre>
-
-<p>rails new --edgeを実行。(test-appを作成する。)</p>
-<pre><code class="highlight plaintext">rails/railties/bin/rails new test-app --edge
-</code></pre>
-
-<p>localで動かしてみる。</p>
-<pre><code class="highlight plaintext">    # test-appに移動
-    cd test-app
-
-    # scaffold
-    rails g scaffold Product title:string description:text image_url:string price:decimal
-
-    # マイグレーションの実行
-    rake db:migrate
-
-    # rails server
-    rails s
-</code></pre>
-
-<p><a href="http://localhost:3000/products">http://localhost:3000/products</a> にアクセスしてアプリケーションが作成されているのを確認できた。</p>
-
-<p><a href="http://localhost:3000/rails/info/properties">http://localhost:3000/rails/info/properties</a> にアクセスして、
-RailsのVersionが4.0.0.betaになっているのを確認した。</p>
-
-<h2 id="参考">参考</h2>
-
-<ul>
-<li><p><a href="http://edgeguides.rubyonrails.org/">Ruby on Rails Edge Guides</a></p></li>
-<li><p><a href="https://github.com/rails/rails">Rails</a></p></li>
-<li><p><a href="https://speakerdeck.com/spastorino/rails-4-in-30">Rails 4 in 30&#39;</a></p></li>
-<li><p><a href="http://blog.wyeworks.com/2012/11/13/rails-4-compilation-links/">Rails 4 links compilation</a></p></li>
-</ul>
-
 
 
     </div>
@@ -741,6 +716,7 @@ RailsのVersionが4.0.0.betaになっているのを確認した。</p>
     <aside>
       <h2>Recent Articles</h2>
       <ol>
+          <li><a href="/2014/09/23/rubykaigi2014-and-rubyhiroba2014.html">RubyKaigi2014とRubyHirobaに参加してきた</a> <span>Sep 23</span></li>
           <li><a href="/2014/09/02/yapc-asia-2014-day2.html">yapc-asia-2014-day2</a> <span>Sep  2</span></li>
           <li><a href="/2014/08/24/running-lean-1.html">running-lean-1</a> <span>Aug 24</span></li>
           <li><a href="/2014/01/09/install-ggplot2.html">ggplot2をインストールして使うまで</a> <span>Jan  9</span></li>
@@ -750,7 +726,6 @@ RailsのVersionが4.0.0.betaになっているのを確認した。</p>
           <li><a href="/2013/09/29/install-mac-vim74.html">install-mac-vim74</a> <span>Sep 29</span></li>
           <li><a href="/2013/09/15/i-change-my-blog-name.html">Change my blog's url</a> <span>Sep 15</span></li>
           <li><a href="/2012/12/24/fuelphp-advent-calendar-2012.html">FuelPHPで簡単なWebアプリケーションを作ってみる</a> <span>Dec 24</span></li>
-          <li><a href="/2012/11/19/startup-rails4.html">rails4(edge)を動かしてみた。</a> <span>Nov 19</span></li>
       </ol>
 
       <h2>Tags</h2>
@@ -766,11 +741,12 @@ RailsのVersionが4.0.0.betaになっているのを確認した。</p>
           <li><a href="/tags/sqale.html">sqale (1)</a></li>
           <li><a href="/tags/r.html">R (1)</a></li>
           <li><a href="/tags/ggplot2.html">ggplot2 (1)</a></li>
+          <li><a href="/tags/ruby.html">Ruby (1)</a></li>
       </ol>
 
       <h2>By Year</h2>
       <ol>
-          <li><a href="/2014.html">2014 (4)</a></li>
+          <li><a href="/2014.html">2014 (5)</a></li>
           <li><a href="/2013.html">2013 (4)</a></li>
           <li><a href="/2012.html">2012 (4)</a></li>
       </ol>
