@@ -3,12 +3,12 @@
     <div>
       <mofu-logo/>
       <h2 class="subtitle">Yuta Kurotaki</h2>
-      <h2>Links</h2>
       <div class="links">
         <ul>
           <li><a href="https://github.com/kurotaky" target="_blank">GitHub</a></li>
           <li><a href="https://twitter.com/kurotaky" target="_blank">Twitter</a></li>
-          <li><a href="http://kurotaky.hatenablog.com/" target="_blank">Blog</a></li>
+          <li><a href="https://www.facebook.com/kurotaky" target="_blank">Facebook</a></li>
+          <li><a href="https://kurotaky.hatenablog.com/" target="_blank">Blog</a></li>
           <li><a href="https://speakerdeck.com/kurotaky" target="_blank">Speakerdeck</a></li>
         </ul>
       </div>
@@ -46,7 +46,7 @@ export default {
 
 .subtitle {
   font-weight: 300;
-  font-size: 42px;
+  font-size: 30px;
   color: #526488;
   word-spacing: 5px;
   padding-bottom: 15px;
@@ -54,5 +54,30 @@ export default {
 
 .links {
   padding-top: 15px;
+}
+
+ul {
+  list-style: none;
+  display: table;
+  table-layout: fixed;
+  border-spacing: 10px;
+}
+
+li {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+img{
+  max-width: 300px;
+  height: auto;
+}
+
+a {
+  font-size: 24px;
+  color: #526488;
+  display: block;
+  text-decoration: none;
 }
 </style>
