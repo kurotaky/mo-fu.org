@@ -3,6 +3,24 @@
     <div>
       <mofu-logo/>
       <h2 class="subtitle">Yuta Kurotaki</h2>
+      <h3>About</h3>
+      <p>Yuta Kurotaki is Software Engineer <a href="https://suzuri.jp/" target="_blank">SUZURI</a> and <a href="https://people.suzuri.jp/" target="_blank">SUZURI People</a> at GMO Pepabo, Inc.<br>
+      I'm interested in Human Information Processing, Human Computer Interaction, FinTech.</p>
+      <h3>Profile</h3>
+      <div class='profile'>
+        <ul>
+          <li>
+          April 2012 - Present, Senior Software Engineer, <a href="https://pepabo.com/" target="_blank">GMO Pepabo, Inc.</a>
+          </li>
+          <li>
+          April 2009 - September 2011, Master of Informatics, <a href="https://www.kogakuin.ac.jp/english/graduateschool/principles/informatics-program.html" target="_blank">Kogakuin University</a>
+          </li>
+          <li>
+          April 2005 - March 2009, Bachelor of Engineering, <a href="http://rikou.kanto-gakuin.ac.jp/" target="_blank">Kanto Gakuin University</a>
+          </li>
+        </ul>
+      </div>
+      <h3>Links</h3>
       <div class="links">
         <ul>
           <li><a href="https://github.com/kurotaky" target="_blank">GitHub</a></li>
@@ -12,6 +30,8 @@
           <li><a href="https://speakerdeck.com/kurotaky" target="_blank">Speakerdeck</a></li>
         </ul>
       </div>
+      <h3>Contact</h3>
+      <p>mailto: yuta.kurotaki at gmail.com</p>
     </div>
   </section>
 </template>
@@ -52,32 +72,44 @@ export default {
   padding-bottom: 15px;
 }
 
-.links {
-  padding-top: 15px;
+h3 {
+  padding-top: 30px;
 }
 
-ul {
+.profile ul {
+  list-style: none;
+}
+
+.profile li {
+  text-align: left;
+}
+
+.links ul {
   list-style: none;
   display: table;
   table-layout: fixed;
   border-spacing: 10px;
 }
 
-li {
+.links li {
   display: table-cell;
   vertical-align: middle;
   text-align: center;
 }
 
-img{
-  max-width: 300px;
-  height: auto;
+a {
+  color: #526488;
 }
 
-a {
-  font-size: 24px;
+.links a {
+  font-size: 18px;
   color: #526488;
   display: block;
   text-decoration: none;
+}
+
+img{
+  max-width: 300px;
+  height: auto;
 }
 </style>
