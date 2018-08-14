@@ -3,11 +3,11 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'mo-fu.org',
+    title: 'Yuta Kurotaki | mo-fu.org',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'n' }
+      { hid: 'description', name: 'description', content: 'Yuta Kurotaki Web site'  }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
