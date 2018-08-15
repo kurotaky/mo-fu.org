@@ -13,11 +13,27 @@
           April 2012 - Present, Senior Software Engineer, <a href="https://pepabo.com/" target="_blank">GMO Pepabo, Inc.</a>
           </li>
           <li>
-          April 2009 - September 2011, Master of Informatics, <a href="https://www.kogakuin.ac.jp/english/graduateschool/principles/informatics-program.html" target="_blank">Kogakuin University</a>
+          April 2009 - September 2011, Master of Informatics, <a href="https://www.kogakuin.ac.jp/" target="_blank">Kogakuin University</a>
           </li>
           <li>
           April 2005 - March 2009, Bachelor of Engineering, <a href="http://rikou.kanto-gakuin.ac.jp/" target="_blank">Kanto Gakuin University</a>
           </li>
+        </ul>
+      </div>
+      <h3>Publications</h3>
+      <div class='profile'>
+        <ul>
+          <li><a href="https://www.shoeisha.co.jp/book/detail/9784798153858" target="_blank">エンジニアのためのデザイン思考入門</a>, 翔泳社, 2017年12月15日.</li>
+          <li><a href="http://gihyo.jp/magazine/wdpress/archive/2016/vol92" target="_blank">Web開発新人研修 手を動かして学ぶ開発の全体像, WEB+DB PRESS Vol.92</a>, 技術評論社, 2016年4月23日.</li>
+        </ul>
+      </div>
+      <h3>Projects</h3>
+      <div class='profile'>
+        <ul>
+          <li><a href="https://medium.com/titech-eng-and-design" target="_blank">東京工業大学エンジニアリングデザインプロジェクト(EDP)</a></li>
+          <li><a href="http://ommf.iamas.ac.jp/makers/72" target="_blank">口内環境の改善をサポートするIoT歯ブラシスタンド「migaco」</a></li>
+          <li><a href="https://mameblo.com/" target="_blank">日本の豊かなブログサービス まめぶろ</a></li>
+          <li><a href="https://www.shibafoo.com/" target="_blank">元Logpiユーザのためのコミュニティ シバフ</a></li>
         </ul>
       </div>
       <h3>Links</h3>
