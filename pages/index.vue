@@ -3,9 +3,10 @@
     <div>
       <mofu-logo/>
       <h2 class="subtitle">Yuta Kurotaki</h2>
+      <dragon/>
       <h3>About</h3>
       <p>Yuta Kurotaki is Software Engineer <a href="https://suzuri.jp/" target="_blank">SUZURI</a> and <a href="https://people.suzuri.jp/" target="_blank">SUZURI People</a> at GMO Pepabo, Inc.<br>
-      I'm interested in Human Information Processing, Human Computer Interaction, FinTech.</p>
+      I'm interested in Human Computer Interaction/Integration, Human Information Processing, Blockchain, Drums, Kickboxing.</p>
       <h3>Profile</h3>
       <div class='profile'>
         <ul>
@@ -30,10 +31,36 @@
       <h3>Projects</h3>
       <div class='profile'>
         <ul>
-          <li><a href="https://medium.com/titech-eng-and-design" target="_blank">東京工業大学エンジニアリングデザインプロジェクト(EDP)</a></li>
+          <li><a href="https://github.com/kurotaky/bancor" target="_blank">bancor: Ruby implementation of bancor protocol</a></li>
+          <li><a href="https://titech-edp.github.io/2016-edp-bc/#tocAnchor-1-1-4" target="_blank">CycleChanger - 東京工業大学エンジニアリングデザインプロジェクト(EDP)</a></li>
+          <li><a href="http://railsgirls.com/tokyo.html" target="_blank">Rails Girls Tokyo Coach</a></li>
           <li><a href="http://ommf.iamas.ac.jp/makers/72" target="_blank">口内環境の改善をサポートするIoT歯ブラシスタンド「migaco」</a></li>
           <li><a href="https://mameblo.com/" target="_blank">日本の豊かなブログサービス まめぶろ</a></li>
           <li><a href="https://www.shibafoo.com/" target="_blank">元Logpiユーザのためのコミュニティ シバフ</a></li>
+        </ul>
+      </div>
+      <h3>Presentations</h3>
+      <div class='profile'>
+        <ul>
+          <li><a href="https://rubykaigi.org/2018/presentations/kurotaky.html#may31" target="_blank">bancor: Token economy made with Ruby - RubyKaigi 2018</a></li>
+          <li><a href="https://kurotaky.hatenablog.com/entry/2017/03/28/211836" target="_blank">CycleChanger - Slush Tokyo 2017</a></li>
+          <li><a href="https://rubyassociation.doorkeeper.jp/events/36358" target="_blank">新規事業の成長を支えるRuby - Ruby Business Users Conference 2016</a></li>
+          <li><a href="https://2015.rubyconf.tw/" target="_blank">Enterprise Rails Application Tips - RubyConf Taiwan 2015</a></li>
+        </ul>
+      </div>
+      <h3>Paper/International Conference</h3>
+      <div class='profile'>
+        <ul>
+          <li>
+            Yuta Kurotaki, Hisao Shiizuka, Measurment and Clasification of the Affective Value of Drum Rhythm Patterns,<br>
+            Third IEEE International Conference on Intelligent Networking and Collaborative Systems(IEEE INCoS2011), 872-875, 2011-12.<br>
+            <a href="https://ieeexplore.ieee.org/document/6132925/" target="_blank">https://ieeexplore.ieee.org/document/6132925/</a>
+          </li>
+          <li>
+            Yuta Kurotaki, Hisao Shiizuka, Evaluation of Feelings Received from the Rhythms of Percussive Timbre and Relationships between Affective Values,<br>
+            Advances in Intelligent Decision Technologies Proceedings of the Second KES International Symposium IDT 2010, Springer, 631-639, 2010-07-30.<br>
+            <a href="https://link.springer.com/chapter/10.1007/978-3-642-14616-9_62" target="_blank">https://link.springer.com/chapter/10.1007/978-3-642-14616-9_62</a>
+          </li>
         </ul>
       </div>
       <h3>Links</h3>
@@ -54,10 +81,12 @@
 
 <script>
 import MofuLogo from '~/components/MofuLogo.vue'
+import Dragon from '~/components/Dragon.vue'
 
 export default {
   components: {
-    MofuLogo
+    MofuLogo,
+    Dragon
   }
 }
 </script>
@@ -97,7 +126,8 @@ h3 {
 }
 
 .profile li {
-  text-align: left;
+  padding-top: 5px;
+  text-align: center;
 }
 
 .links ul {
