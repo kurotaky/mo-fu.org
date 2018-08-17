@@ -21,8 +21,8 @@
         </ul>
       <h2 class="title is-2">Publications</h2>
         <ul>
-          <li><a href="https://www.shoeisha.co.jp/book/detail/9784798153858" target="_blank">エンジニアのためのデザイン思考入門</a>, 翔泳社, 2017年12月15日.</li>
-          <li><a href="http://gihyo.jp/magazine/wdpress/archive/2016/vol92" target="_blank">Web開発新人研修 手を動かして学ぶ開発の全体像, WEB+DB PRESS Vol.92</a>, 技術評論社, 2016年4月23日.</li>
+          <li>東京工業大学エンジニアリングデザインプロジェクト 著, 齊藤滋規 著, 坂本啓 著, 竹田陽子 著, 角征典 著, 大内孝子 編, <a href="https://www.shoeisha.co.jp/book/detail/9784798153858" target="_blank">エンジニアのためのデザイン思考入門</a>, 翔泳社, 2017年12月15日.</li>
+          <li><a href="http://gihyo.jp/magazine/wdpress/archive/2016/vol92" target="_blank">Web開発新人研修 手を動かして学ぶ開発の全体像 第4章, WEB+DB PRESS Vol.92</a>, 技術評論社, 2016年4月23日.</li>
         </ul>
       <h2 class="title is-2">Projects</h2>
         <ul>
@@ -62,7 +62,12 @@
           <li><a href="https://speakerdeck.com/kurotaky" target="_blank">Speakerdeck</a></li>
         </ul>
       <h2 class="title is-2">Contact</h2>
-    <p>mailto: yuta.kurotaki at gmail.com</p>
+      <p>mailto: yuta.kurotaki at gmail.com</p>
+      <h2 class="title is-2">Ethereum/Bitcoin</h2>
+        <ul>
+          <li>Ethereum: 0x9c3b3FD937be7dC17B8082bfc57ff90aA6A49d14<figure class="image bitcoin"><img src="~assets/ethereum-kurotaky.jpg"></figure></li>
+          <li>Bitcoin: 3BR2655BFWkxBqqqPCqqCm45cVQR3HGQ6S<figure class="image bitcoin"><img src="~assets/bitcoin-kurotaky.jpg"></figure></li>
+        </ul>
     </div>
   </section>
 </template>
@@ -82,6 +87,9 @@ export default {
 
 <style>
 .image.mo-fu {
+  width: 300px;
+}
+.image.bitcoin {
   width: 300px;
 }
 </style>
