@@ -1,3 +1,5 @@
 <template>
-  <img src="~assets/mo-fu.png">
+  <figure class="image mo-fu">
+    <img src="~assets/mo-fu.png">
+  </figure>
 </template>

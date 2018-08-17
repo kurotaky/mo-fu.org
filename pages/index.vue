@@ -1,14 +1,13 @@
 <template>
-  <section class="container">
-    <div>
-      <mofu-logo/>
-      <h2 class="subtitle">Yuta Kurotaki</h2>
-      <dragon/>
-      <h3>About</h3>
+  <section class="section">
+    <mofu-logo/>
+    <div class="content">
+    <h1 class="title is-1">Yuta Kurotaki</h1>
+    <dragon/>
+      <h2 class="title is-2">About</h2>
       <p>Yuta Kurotaki is Software Engineer <a href="https://suzuri.jp/" target="_blank">SUZURI</a> and <a href="https://people.suzuri.jp/" target="_blank">SUZURI People</a> at GMO Pepabo, Inc.<br>
       I'm interested in Human Computer Interaction/Integration, Human Information Processing, Blockchain, Drums, Kickboxing.</p>
-      <h3>Profile</h3>
-      <div class='profile'>
+      <h2 class="title is-2">Profile</h2>
         <ul>
           <li>
           April 2012 - Present, Senior Software Engineer, <a href="https://pepabo.com/" target="_blank">GMO Pepabo, Inc.</a>
@@ -20,16 +19,12 @@
           April 2005 - March 2009, Bachelor of Engineering, <a href="http://rikou.kanto-gakuin.ac.jp/" target="_blank">Kanto Gakuin University</a>
           </li>
         </ul>
-      </div>
-      <h3>Publications</h3>
-      <div class='profile'>
+      <h2 class="title is-2">Publications</h2>
         <ul>
           <li><a href="https://www.shoeisha.co.jp/book/detail/9784798153858" target="_blank">エンジニアのためのデザイン思考入門</a>, 翔泳社, 2017年12月15日.</li>
           <li><a href="http://gihyo.jp/magazine/wdpress/archive/2016/vol92" target="_blank">Web開発新人研修 手を動かして学ぶ開発の全体像, WEB+DB PRESS Vol.92</a>, 技術評論社, 2016年4月23日.</li>
         </ul>
-      </div>
-      <h3>Projects</h3>
-      <div class='profile'>
+      <h2 class="title is-2">Projects</h2>
         <ul>
           <li><a href="https://github.com/kurotaky/bancor" target="_blank">bancor: Ruby implementation of bancor protocol</a></li>
           <li><a href="https://titech-edp.github.io/2016-edp-bc/#tocAnchor-1-1-4" target="_blank">CycleChanger - 東京工業大学エンジニアリングデザインプロジェクト(EDP)</a></li>
@@ -38,18 +33,14 @@
           <li><a href="https://mameblo.com/" target="_blank">日本の豊かなブログサービス まめぶろ</a></li>
           <li><a href="https://www.shibafoo.com/" target="_blank">元Logpiユーザのためのコミュニティ シバフ</a></li>
         </ul>
-      </div>
-      <h3>Presentations</h3>
-      <div class='profile'>
+      <h2 class="title is-2">Presentations</h2>
         <ul>
           <li><a href="https://rubykaigi.org/2018/presentations/kurotaky.html#may31" target="_blank">bancor: Token economy made with Ruby - RubyKaigi 2018</a></li>
           <li><a href="https://kurotaky.hatenablog.com/entry/2017/03/28/211836" target="_blank">CycleChanger - Slush Tokyo 2017</a></li>
           <li><a href="https://rubyassociation.doorkeeper.jp/events/36358" target="_blank">新規事業の成長を支えるRuby - Ruby Business Users Conference 2016</a></li>
           <li><a href="https://2015.rubyconf.tw/" target="_blank">Enterprise Rails Application Tips - RubyConf Taiwan 2015</a></li>
         </ul>
-      </div>
-      <h3>Paper/International Conference</h3>
-      <div class='profile'>
+      <h2 class="title is-2">Paper/International Conference</h2>
         <ul>
           <li>
             Yuta Kurotaki, Hisao Shiizuka, Measurment and Clasification of the Affective Value of Drum Rhythm Patterns,<br>
@@ -62,9 +53,7 @@
             <a href="https://link.springer.com/chapter/10.1007/978-3-642-14616-9_62" target="_blank">https://link.springer.com/chapter/10.1007/978-3-642-14616-9_62</a>
           </li>
         </ul>
-      </div>
-      <h3>Links</h3>
-      <div class="links">
+      <h2 class="title is-2">Links</h2>
         <ul>
           <li><a href="https://github.com/kurotaky" target="_blank">GitHub</a></li>
           <li><a href="https://twitter.com/kurotaky" target="_blank">Twitter</a></li>
@@ -72,90 +61,27 @@
           <li><a href="https://kurotaky.hatenablog.com/" target="_blank">Blog</a></li>
           <li><a href="https://speakerdeck.com/kurotaky" target="_blank">Speakerdeck</a></li>
         </ul>
-      </div>
-      <h3>Contact</h3>
-      <p>mailto: yuta.kurotaki at gmail.com</p>
+      <h2 class="title is-2">Contact</h2>
+    <p>mailto: yuta.kurotaki at gmail.com</p>
     </div>
   </section>
 </template>
 
 <script>
-import MofuLogo from '~/components/MofuLogo.vue'
-import Dragon from '~/components/Dragon.vue'
+import MofuLogo from "~/components/MofuLogo.vue";
+import Dragon from "~/components/Dragon.vue";
+import "bulma/css/bulma.css";
 
 export default {
   components: {
     MofuLogo,
     Dragon
   }
-}
+};
 </script>
 
 <style>
-.container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 30px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-h3 {
-  padding-top: 30px;
-}
-
-.profile ul {
-  list-style: none;
-}
-
-.profile li {
-  padding-top: 5px;
-  text-align: center;
-}
-
-.links ul {
-  list-style: none;
-  display: table;
-  table-layout: fixed;
-  border-spacing: 10px;
-}
-
-.links li {
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
-}
-
-a {
-  color: #526488;
-}
-
-.links a {
-  font-size: 18px;
-  color: #526488;
-  display: block;
-  text-decoration: none;
-}
-
-img{
-  max-width: 300px;
-  height: auto;
+.image.mo-fu {
+  width: 300px;
 }
 </style>
