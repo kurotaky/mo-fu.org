@@ -5,8 +5,8 @@
     <h1 class="title is-1">Yuta Kurotaki</h1>
     <dragon/>
       <h2 class="title is-2">About</h2>
-      <p>Yuta Kurotaki is Software Engineer <a href="https://suzuri.jp/" target="_blank">SUZURI</a> and <a href="https://people.suzuri.jp/" target="_blank">SUZURI People</a> at GMO Pepabo, Inc.<br>
-      I'm interested in Human Computer Interaction/Integration, Human Information Processing, Blockchain, Drums, Kickboxing.</p>
+      <p>Yuta Kurotaki is Software Engineer at <a href="https://suzuri.jp/" target="_blank">SUZURI</a> and <a href="https://people.suzuri.jp/" target="_blank">SUZURI People</a> of GMO Pepabo, Inc.<br>
+      He is interested in Human Computer Interaction/Integration, Human Information Processing, Blockchain, Drums, Kickboxing.</p>
       <h2 class="title is-2">Profile</h2>
         <ul>
           <li>
