@@ -63,11 +63,6 @@
         </ul>
       <h2 class="title is-2">Contact</h2>
       <p>mailto: yuta.kurotaki at gmail.com</p>
-      <h2 class="title is-2">Ethereum/Bitcoin</h2>
-        <ul>
-          <li>Ethereum: 0x9c3b3FD937be7dC17B8082bfc57ff90aA6A49d14<figure class="image bitcoin"><img src="~assets/ethereum-kurotaky.jpg"></figure></li>
-          <li>Bitcoin: 3BR2655BFWkxBqqqPCqqCm45cVQR3HGQ6S<figure class="image bitcoin"><img src="~assets/bitcoin-kurotaky.jpg"></figure></li>
-        </ul>
     </div>
   </section>
 </template>
