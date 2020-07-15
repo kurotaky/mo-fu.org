@@ -5,12 +5,18 @@
     <h1 class="title is-1">Yuta Kurotaki</h1>
     <dragon/>
       <h2 class="title is-2">About</h2>
-      <p>Yuta Kurotaki is Software Engineer at <a href="https://suzuri.jp/" target="_blank">SUZURI</a> and <a href="https://people.suzuri.jp/" target="_blank">SUZURI People</a> of GMO Pepabo, Inc.<br>
-      He is interested in Human Computer Interaction/Integration, Human Information Processing, Blockchain, Drums, Kickboxing.</p>
+      <p>Yuta Kurotaki is Software Engineer at <a href="https://suzuri.jp/" target="_blank">SUZURI</a> of GMO Pepabo, Inc.<br>
+      He is interested in Human Computer Interaction, Blockchain, Drums, Kickboxing.</p>
       <h2 class="title is-2">Profile</h2>
         <ul>
           <li>
-          April 2012 - Present, Senior Software Engineer, <a href="https://pepabo.com/" target="_blank">GMO Pepabo, Inc.</a>
+          April 2020 - Present, Ph.D. Student (Engineering), <a href="https://www.ynu.ac.jp/" target="_blank">Yokohama National University</a>
+          </li>
+          <li>
+          July 2020 - Present, Senior Engineering Lead, <a href="https://pepabo.com/" target="_blank">GMO Pepabo, Inc.</a>
+          </li>
+          <li>
+          April 2012 - 2018, Senior Software Engineer, <a href="https://pepabo.com/" target="_blank">GMO Pepabo, Inc.</a>
           </li>
           <li>
           April 2009 - September 2011, Master of Informatics, <a href="https://www.kogakuin.ac.jp/" target="_blank">Kogakuin University</a>
@@ -26,6 +32,7 @@
         </ul>
       <h2 class="title is-2">Projects</h2>
         <ul>
+          <li><a href="https://github.com/EthWorks/ethereum.rb" target="_blank">ethereum.rb</a></li>
           <li><a href="https://github.com/kurotaky/bancor" target="_blank">bancor: Ruby implementation of bancor protocol</a></li>
           <li><a href="https://titech-edp.github.io/2016-edp-bc/#tocAnchor-1-1-4" target="_blank">CycleChanger - 東京工業大学エンジニアリングデザインプロジェクト(EDP)</a></li>
           <li><a href="http://railsgirls.com/tokyo.html" target="_blank">Rails Girls Tokyo Coach</a></li>
