@@ -42,6 +42,7 @@
         </ul>
       <h2 class="title is-2">Presentations</h2>
         <ul>
+          <li><a href="https://speakerdeck.com/kurotaky/ethereum-for-ruby" target="_blank">Ethereum for Ruby - RubyKaigi 2022</a></li>
           <li><a href="https://rubykaigi.org/2018/presentations/kurotaky.html#may31" target="_blank">bancor: Token economy made with Ruby - RubyKaigi 2018</a></li>
           <li><a href="https://kurotaky.hatenablog.com/entry/2017/03/28/211836" target="_blank">CycleChanger - Slush Tokyo 2017</a></li>
           <li><a href="https://rubyassociation.doorkeeper.jp/events/36358" target="_blank">新規事業の成長を支えるRuby - Ruby Business Users Conference 2016</a></li>
