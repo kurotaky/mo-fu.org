@@ -5,7 +5,7 @@
   "author": "Yuta Kurotaki <yuta.kurotaki@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "nuxt dev",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "bulma": "^0.7.1",
-    "nuxt": "^1.0.0"
+    "nuxt": "^3.10.3"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",

@@ -78,7 +78,6 @@
 <script>
 import MofuLogo from "~/components/MofuLogo.vue";
 import Dragon from "~/components/Dragon.vue";
-import "bulma/css/bulma.css";
 
 export default {
   components: {

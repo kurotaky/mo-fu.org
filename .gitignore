@@ -3,11 +3,31 @@ node_modules
 
 # logs
 npm-debug.log
+yarn-debug.log
+yarn-error.log
+.pnpm-debug.log
 
-# Nuxt build
+# Nuxt
 .nuxt
-
-# Nuxt generate
+.nitro
+.cache
+.output
 dist
 
+# Environment
+.env
+.env.*
+!.env.example
+
+# IDE
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS
 .DS_Store
+Thumbs.db
