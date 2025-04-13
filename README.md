@@ -1,22 +1,45 @@
 # mo-fu.org
 
-> n
+Yuta Kurotaki's personal website built with Nuxt 3.
 
-## Build Setup
+## Development Environment
 
-``` bash
+- Node.js: v22.5.1
+- Nuxt: 3.16.2
+- Bulma: 0.7.1
+
+## Setup
+
+```bash
 # install dependencies
-$ npm install # Or yarn install
+$ npm install
 
 # serve with hot reload at localhost:3000
 $ npm run dev
 
-# build for production and launch server
+# build for production
 $ npm run build
-$ npm start
 
 # generate static project
 $ npm run generate
+
+# preview generated static project
+$ npx serve .output/public
 ```
 
-For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
+## Project Structure
+
+```
+mo-fu.org/
+├── assets/         # Static assets (images, CSS, etc.)
+├── components/     # Vue components
+├── layouts/        # Layout components
+├── pages/          # Page components
+├── plugins/        # Nuxt plugins
+├── static/         # Static files
+└── store/          # Vuex store
+```
+
+## License
+
+MIT
