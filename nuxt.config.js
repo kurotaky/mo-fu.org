@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   app: {
+    baseURL: '/mo-fu.org/',
     head: {
       title: 'Yuta Kurotaki | mo-fu.org',
       meta: [
@@ -13,10 +14,12 @@ export default defineNuxtConfig({
       ]
     }
   },
+
   /*
   ** Customize the progress bar color
   */
   loading: { color: '#3B8070' },
+
   /*
   ** Build configuration
   */
@@ -35,6 +38,9 @@ export default defineNuxtConfig({
       }
     }
   },
+
   // CSSの設定
-  css: ['bulma/css/bulma.min.css', '~/assets/css/main.css']
+  css: ['bulma/css/bulma.min.css', '~/assets/css/main.css'],
+
+  compatibilityDate: '2025-04-14'
 })
