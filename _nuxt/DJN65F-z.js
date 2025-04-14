@@ -1,0 +1,1 @@
+import{_ as t}from"./DlAUqK2U.js";import{g as o,t as n,v as c,z as r}from"./CXml5l74.js";const s={};function a(_,f){const e=o("nuxt");return c(),n("div",null,[r(e)])}const p=t(s,[["render",a]]);export{p as default};
