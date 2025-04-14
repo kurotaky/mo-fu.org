@@ -13,7 +13,7 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "bulma": "^0.7.1",
+    "bulma": "^1.0.3",
     "nuxt": "^3.10.3"
   },
   "devDependencies": {

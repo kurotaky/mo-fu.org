@@ -36,5 +36,5 @@ export default defineNuxtConfig({
     }
   },
   // CSSの設定
-  css: ['~/assets/css/main.css']
+  css: ['bulma/css/bulma.min.css', '~/assets/css/main.css']
 })
