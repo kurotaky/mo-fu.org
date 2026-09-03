@@ -1,0 +1,1 @@
+import{a as e,c as t,l as n,t as r,u as i}from"#entry";var a={};function o(r,a){let o=i(`nuxt`);return n(),e(`div`,null,[t(o)])}var s=r(a,[[`render`,o]]);export{s as default};
