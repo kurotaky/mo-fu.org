@@ -1,0 +1,5 @@
+# Netlify のビルド設定(UI 側の設定より優先される)
+# Node のバージョンは .nvmrc で指定
+[build]
+  command = "npm run generate"
+  publish = ".output/public"

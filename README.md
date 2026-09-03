@@ -1,12 +1,13 @@
 # mo-fu.org
 
-Yuta Kurotaki's personal website built with Nuxt 3.
+Yuta Kurotaki's personal website built with Nuxt 4.
 
 ## Development Environment
 
-- Node.js: v22.5.1
-- Nuxt: 3.16.2
-- Bulma: 0.7.1
+- Node.js: v22 (see `.nvmrc`)
+- Nuxt: 4.5.2
+- Bulma: 1.0.4
+- ESLint: 10 (`@nuxt/eslint`, flat config)
 
 ## Setup
 
@@ -24,7 +25,10 @@ $ npm run build
 $ npm run generate
 
 # preview generated static project
-$ npx serve .output/public
+$ npm run preview
+
+# lint
+$ npm run lint
 ```
 
 ## Project Structure
@@ -36,8 +40,8 @@ mo-fu.org/
 ├── layouts/        # Layout components
 ├── pages/          # Page components
 ├── plugins/        # Nuxt plugins
-├── static/         # Static files
-└── store/          # Vuex store
+├── public/         # Static files served as-is (favicon, CNAME)
+└── store/          # (unused) legacy directory
 ```
 
 ## License
