@@ -1,26 +1,29 @@
 {
   "name": "mo-fu.org",
   "version": "1.0.0",
-  "description": "n",
+  "description": "Yuta Kurotaki's personal website",
   "author": "Yuta Kurotaki <yuta.kurotaki@gmail.com>",
   "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.19.0"
+  },
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
-    "start": "nuxt start",
+    "start": "nuxt preview",
     "generate": "nuxt generate",
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint"
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "bulma": "^1.0.3",
-    "nuxt": "^3.10.3"
+    "bulma": "^1.0.4",
+    "nuxt": "^4.5.2"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.1",
-    "eslint": "^4.15.0",
-    "eslint-friendly-formatter": "^3.0.0",
-    "eslint-loader": "^1.7.1",
-    "eslint-plugin-vue": "^4.0.0"
+    "@nuxt/eslint": "^1.17.0",
+    "eslint": "^10.9.1"
   }
 }

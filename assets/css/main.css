@@ -1,1 +1,1 @@
-@import 'bulma/css/bulma.css'; 
+/* サイト固有のスタイルはここに追加する。Bulma は nuxt.config.js の css で読み込む。 */
