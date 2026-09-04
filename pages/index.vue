@@ -140,6 +140,7 @@
         <ul>
           <li><a href="https://kyoto-i-lab.org/" target="_blank">京都未踏的人材発掘・育成プログラム 2026年度 アドバイザー</a></li>
           <li><a href="https://developers.gmo.jp/events/66251/" target="_blank">Hack-1グランプリ2025 デモデー 審査員</a></li>
+          <li><a href="https://ethtokyo.org/" target="_blank">ETHTokyo オーガナイザー (2024年〜)</a></li>
           <li><a href="https://cto-a.org/" target="_blank">一般社団法人日本CTO協会 幹事 (2024年6月〜)</a></li>
           <li><a href="https://tech.pepabo.com/2024/09/03/2024-engineer-training/" target="_blank">日本CTO協会 新卒エンジニア合同研修の運営</a></li>
           <li>鹿児島Ruby会議01実行委員長</li>
